@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Sign In</title>
+</head>
+<body>
+<div class="relative flex flex-col rounded-xl bg-transparent items-center h-screen justify-center">
+    <h4 class="block text-xl font-medium text-slate-800">
+        Sign In
+    </h4>
+
+    <form th:action="@{/}" th:object="${user}" method="post" class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+        <div class="mb-1 flex flex-col gap-6">
+
+            <div class="w-full max-w-sm min-w-[200px]">
+                <label class="block mb-2 text-sm text-slate-600">
+                    Email
+                </label>
+                <input type="email"
+                       class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                       placeholder="Your Email"
+                       th:field="${user.email}"
+                />
+            </div>
+            <div class="w-full max-w-sm min-w-[200px]">
+                <label class="block mb-2 text-sm text-slate-600">
+                    Password
+                </label>
+                <input type="password"
+                       class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                       placeholder="Your Password"
+                       th:field="${user.password}"
+                />
+            </div>
+        </div>
+
+
+        <input type="submit"
+               class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+               value="Sign In"/>
+        <p class="flex justify-center mt-6 text-sm text-slate-600">
+            Don&apos;t have an account?
+            <a href="http://localhost:8080/register" class="ml-1 text-sm font-semibold text-slate-700 underline">
+                Register
+            </a>
+        </p>
+        <div class="flex justify-center mt-6 text-red-600">
+            <p th:text="${error}"></p>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
