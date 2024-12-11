@@ -1,28 +1,52 @@
-package com.example.demo.controller.profile;
+package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserService userService;
+
+    public ProfileController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/profile")
-    public String getProfile(@RequestParam String email, Model model) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+    public String viewProfile(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            return "redirect:/sign-in";
+        }
+
         model.addAttribute("user", user);
         return "profile";
     }
 
     @PostMapping("/updateProfile")
-    public String updateProfile(User user) {
-        userRepository.save(user);
-        return "redirect:/profile?email=" + user.getEmail();
+    public String updateProfile(@ModelAttribute("user") User updatedUser, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+
+        if (currentUser == null) {
+            return "redirect:/sign-in";
+        }
+
+        // Update the user details
+        currentUser.setName(updatedUser.getName());
+        currentUser.setEmail(updatedUser.getEmail());
+        currentUser.setRole(updatedUser.getRole());
+
+        // Save the updated user to the database
+        userService.saveUser(currentUser);
+        session.setAttribute("user", currentUser); // Update session with new data
+
+        return "redirect:/profile";
     }
 }
