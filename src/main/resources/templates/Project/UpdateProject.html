@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier le projet</title>
+</head>
+<body>
+<h1>Modifier le projet</h1>
+
+<!-- Affichage des messages flash (succès ou erreur) -->
+<div th:if="${message}">
+    <p th:text="${message}" th:class="${messageType}"></p>
+</div>
+
+<!-- Formulaire de modification du projet -->
+<form action="#" th:action="@{/updateProject/{id}(id=${project.id})}" method="post">
+    <div class="form-group">
+        <label for="title">Titre du projet :</label>
+        <input type="text" id="title" name="title" th:value="${project.title}" required placeholder="Entrez le titre du projet">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" th:value="${project.description}" required placeholder="Entrez la description du projet"></textarea>
+    </div>
+
+    <button type="submit">Mettre à jour le projet</button>
+</form>
+
+<a href="/projects" class="btn">Retour à la liste des projets</a>
+</body>
+</html>

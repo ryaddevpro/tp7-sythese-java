@@ -29,4 +29,6 @@ public class Competence {
 
     @ManyToMany(mappedBy = "competences")
     private Set<User> users = new HashSet<>();
+
+
 }

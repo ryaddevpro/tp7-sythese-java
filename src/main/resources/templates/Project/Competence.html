@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des compétences</title>
+    <style>
+        /* Style général de la page */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        /* Style du tableau */
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Style des liens */
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            margin-right: 15px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style pour le bouton de confirmation */
+        .update {
+            color: #2196F3;
+        }
+
+        /* Style du message de confirmation */
+        a:active {
+            color: #d32f2f;
+        }
+
+        /* Style responsive */
+        @media (max-width: 768px) {
+            table {
+                width: 90%;
+            }
+
+            th, td {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Liste des compétences</h1>
+
+<!-- Affichage des compétences -->
+<table>
+    <thead>
+    <tr>
+        <th>Nom de la compétence</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Affichage des compétences à partir de la variable 'competences' -->
+    <tr th:each="competence : ${competences}">
+        <td th:text="${competence.competenceName}"></td>
+        <td>
+            <a th:href="@{'/deleteCompetence/' + ${competence.comptenceId}}"
+               onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?');">Supprimer</a>
+            <a th:href="@{'/updateCompetence/' + ${competence.comptenceId}}" class="update">Mettre à jour</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

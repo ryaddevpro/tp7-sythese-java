@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -64,5 +66,22 @@ public class UserController {
         System.out.println(user.toString());
         this.userService.saveUser(user);
         return "redirect:/sign-in";
+
+    }
+
+//    //khaoulaaaaaaaaaaaaaaaaaaa
+
+//    @GetMapping("/developers")
+//    public String getDevelopers(Model model) {
+//        List<User> developers = userService.getDevelopers();
+//        model.addAttribute("developers", developers);
+//        return "Project/ChefPagw"; // correspond à la vue developers.html
+//    }
+
+    @GetMapping("/developers")
+    public String getDevelopers(Model model) {
+        List<User> developers = userService.getDevelopers();
+        model.addAttribute("developers", developers);
+        return "project/chefPagw"; // Assurez-vous que ce chemin correspond à votre fichier HTML
     }
 }

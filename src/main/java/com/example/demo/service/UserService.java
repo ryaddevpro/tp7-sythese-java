@@ -48,4 +48,9 @@ public class UserService {
         return existingUser;
     }
 
+
+    //khaoulaaaaaaaaaaa
+    public List<User> getDevelopers() {
+        return userRepository.findByRole("developer");
+    }
 }

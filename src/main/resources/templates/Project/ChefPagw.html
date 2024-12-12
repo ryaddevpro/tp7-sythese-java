@@ -1,0 +1,257 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="fr">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Interface Chef de Projet</title>-->
+<!--  <style>-->
+<!--    body {-->
+<!--      font-family: Arial, sans-serif;-->
+<!--      margin: 0;-->
+<!--      padding: 0;-->
+<!--      background-color: #f4f4f9;-->
+<!--    }-->
+
+<!--    header {-->
+<!--      background-color: #4CAF50;-->
+<!--      color: white;-->
+<!--      text-align: center;-->
+<!--      padding: 1em 0;-->
+<!--    }-->
+
+<!--    .container {-->
+<!--      text-align: center;-->
+<!--      margin-top: 50px;-->
+<!--    }-->
+
+<!--    button {-->
+<!--      background-color: #4CAF50;-->
+<!--      color: white;-->
+<!--      padding: 10px 20px;-->
+<!--      border: none;-->
+<!--      border-radius: 5px;-->
+<!--      cursor: pointer;-->
+<!--      font-size: 1rem;-->
+<!--    }-->
+
+<!--    button:hover {-->
+<!--      background-color: #45a049;-->
+<!--    }-->
+
+<!--    button:active {-->
+<!--      transform: scale(0.98);-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<header>-->
+<!--  <h1>Interface Chef de Projet</h1>-->
+<!--</header>-->
+
+<!--<div class="container">-->
+<!--  <h2>Bienvenue dans l'espace Chef de Projet</h2>-->
+<!--  <p>Pour ajouter un nouveau projet, cliquez sur le bouton ci-dessous :</p>-->
+<!--  <button onclick="window.location.href='/addProject'">Ajouter un Projet</button>-->
+
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="fr">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Interface Chef de Projet</title>-->
+<!--  <style>-->
+<!--    body {-->
+<!--      font-family: Arial, sans-serif;-->
+<!--      margin: 0;-->
+<!--      padding: 0;-->
+<!--      background-color: #f4f4f9;-->
+<!--    }-->
+
+<!--    header {-->
+<!--      background-color: #4CAF50;-->
+<!--      color: white;-->
+<!--      text-align: center;-->
+<!--      padding: 1em 0;-->
+<!--    }-->
+
+<!--    .container {-->
+<!--      text-align: center;-->
+<!--      margin-top: 50px;-->
+<!--    }-->
+
+<!--    table {-->
+<!--      width: 80%;-->
+<!--      margin: 20px auto;-->
+<!--      border-collapse: collapse;-->
+<!--    }-->
+
+<!--    th, td {-->
+<!--      padding: 10px;-->
+<!--      border: 1px solid #ddd;-->
+<!--      text-align: left;-->
+<!--    }-->
+
+<!--    th {-->
+<!--      background-color: #4CAF50;-->
+<!--      color: white;-->
+<!--    }-->
+
+<!--    button {-->
+<!--      background-color: #4CAF50;-->
+<!--      color: white;-->
+<!--      padding: 10px 20px;-->
+<!--      border: none;-->
+<!--      border-radius: 5px;-->
+<!--      cursor: pointer;-->
+<!--      font-size: 1rem;-->
+<!--    }-->
+
+<!--    button:hover {-->
+<!--      background-color: #45a049;-->
+<!--    }-->
+
+<!--    button:active {-->
+<!--      transform: scale(0.98);-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<header>-->
+<!--  <h1>Interface Chef de Projet</h1>-->
+<!--</header>-->
+
+<!--<div class="container">-->
+<!--  <h2>Bienvenue dans l'espace Chef de Projet</h2>-->
+<!--  <p>Voici la liste des développeurs :</p>-->
+
+<!--  &lt;!&ndash; Tableau des développeurs &ndash;&gt;-->
+<!--  <table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>ID</th>-->
+<!--      <th>Nom</th>-->
+<!--      <th>Email</th>-->
+<!--      <th>Rôle</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="developer : ${developers}">-->
+<!--      <td th:text="${developer.name}"></td>-->
+<!--      <td th:text="${developer.email}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+<!--  &lt;!&ndash; Bouton pour ajouter un projet &ndash;&gt;-->
+<!--  <button onclick="window.location.href='/addProject'">Ajouter un Projet</button>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interface Chef de Projet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    .container {
+      text-align: center;
+      margin: 30px auto;
+      width: 90%;
+    }
+
+    table {
+      width: 100%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Interface Chef de Projet</h1>
+</header>
+
+<div class="container">
+  <h2>Bienvenue dans l'espace Chef de Projet</h2>
+  <p>Voici la liste des développeurs :</p>
+
+  <!-- Tableau des développeurs -->
+  <table>
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Utilisation de Thymeleaf pour afficher la liste des développeurs -->
+    <tr th:each="developer : ${developers}">
+      <td th:text="${developer.name}">Nom du développeur</td>
+      <td th:text="${developer.email}">Email du développeur</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Bouton pour ajouter un projet -->
+  <button onclick="window.location.href='/addProject'">Ajouter un Projet</button>
+</div>
+
+</body>
+</html>
