@@ -33,7 +33,6 @@ import com.example.demo.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ProjectService {
@@ -62,6 +61,7 @@ public class ProjectService {
     public Project getProjectById(Long projectId) {
         return projectRepository.findById(projectId).orElse(null);  // Retourne null si le projet n'est pas trouvé
     }
+
 
 }
 

@@ -18,13 +18,13 @@ public class ProjectController {
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
     }
-
     // Afficher la page pour ajouter un projet
     @GetMapping("/addProject")
     public String showAddProjectPage(Model model) {
         model.addAttribute("project", new Project());
         return "project/addProject";
     }
+
 
     // Ajouter un projet après la soumission du formulaire
     @PostMapping("/addProject")
@@ -39,12 +39,16 @@ public class ProjectController {
         // Renvoyer à la même page avec un message de succès
         return "project/addProject";
     }
+
+
+
     @GetMapping("/projects")
     public String showProjects(Model model) {
         // Récupérer tous les projets depuis la base de données
         model.addAttribute("projects", projectService.getAllProjects());
         return "project/projects";  // Rediriger vers la page qui affiche la liste des projets
     }
+
     @GetMapping("/deleteProject/{id}")
     public String deleteProject(@PathVariable("id") Long projectId, RedirectAttributes redirectAttributes) {
         // Supprimer le projet
