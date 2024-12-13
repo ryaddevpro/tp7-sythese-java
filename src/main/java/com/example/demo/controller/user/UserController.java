@@ -8,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -71,17 +74,34 @@ public class UserController {
 
 //    //khaoulaaaaaaaaaaaaaaaaaaa
 
-//    @GetMapping("/developers")
-//    public String getDevelopers(Model model) {
-//        List<User> developers = userService.getDevelopers();
-//        model.addAttribute("developers", developers);
-//        return "Project/ChefPagw"; // correspond à la vue developers.html
-//    }
-
-    @GetMapping("/developers")
-    public String getDevelopers(Model model) {
-        List<User> developers = userService.getDevelopers();
-        model.addAttribute("developers", developers);
-        return "project/chefPagw"; // Assurez-vous que ce chemin correspond à votre fichier HTML
+    @GetMapping("/search")
+    public String showSearchPage() {
+        return "Project/search";
     }
+
+
+    @PostMapping("/search")
+    public String searchUsersByCompetences(
+            @RequestParam("competences") String competencesInput,
+            Model model) {
+
+        // Vérification si l'entrée utilisateur est valide
+        if (competencesInput != null && !competencesInput.trim().isEmpty()) {
+            // Diviser les compétences entrées par l'utilisateur
+            String[] competencesArray = competencesInput.split(",");
+            List<String> competences = Arrays.stream(competencesArray)
+                    .map(String::trim) // Supprime les espaces
+                    .toList();
+
+            // Recherche des utilisateurs par compétences
+            List<User> users = userService.findUsersByCompetences(competences);
+            model.addAttribute("users", users);
+        } else {
+            model.addAttribute("users", null);
+        }
+
+        return "Project/search"; // Retourne les résultats à la même page
+    }
+
+
 }

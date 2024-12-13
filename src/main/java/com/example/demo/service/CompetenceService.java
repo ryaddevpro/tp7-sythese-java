@@ -34,4 +34,11 @@ public class CompetenceService {
     public Competence getCompetenceById(Long competenceId) {
         return competenceRepository.findById(competenceId).orElse(null); // Retourne null si la compétence n'est pas trouvée
     }
+    // Méthode dans CompetenceService
+    // Méthode dans CompetenceService
+    public List<Competence> getCompetencesByIds(List<Long> competenceIds) {
+        return competenceRepository.findAllById(competenceIds);
+    }
+
+
 }

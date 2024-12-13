@@ -1,7 +1,9 @@
 package com.example.demo.controller.Project;
 
 import com.example.demo.model.Project;
+import com.example.demo.model.User;
 import com.example.demo.service.ProjectService;
+import com.example.demo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,15 @@ import java.util.List;
 @Controller
 public class ProjectController {
 
+
     private final ProjectService projectService;
 
-    public ProjectController(ProjectService projectService) {
+    private final UserService userService;
+
+
+    public ProjectController(ProjectService projectService, UserService userService) {
         this.projectService = projectService;
+        this.userService = userService;
     }
     // Afficher la page pour ajouter un projet
     @GetMapping("/addProject")
@@ -74,6 +81,11 @@ public class ProjectController {
         return "project/updatePage";
     }
 
+    /// //////////////////////////
+    ///
+/// /////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////
     @PostMapping("/updateProject")
     public String updateProject(@ModelAttribute("project") Project project, Model model) {
         // Sauvegarder les modifications du projet
@@ -87,4 +99,6 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
+
 }
+
