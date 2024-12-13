@@ -1,256 +1,119 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="fr">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--  <title>Interface Chef de Projet</title>-->
-<!--  <style>-->
-<!--    body {-->
-<!--      font-family: Arial, sans-serif;-->
-<!--      margin: 0;-->
-<!--      padding: 0;-->
-<!--      background-color: #f4f4f9;-->
-<!--    }-->
-
-<!--    header {-->
-<!--      background-color: #4CAF50;-->
-<!--      color: white;-->
-<!--      text-align: center;-->
-<!--      padding: 1em 0;-->
-<!--    }-->
-
-<!--    .container {-->
-<!--      text-align: center;-->
-<!--      margin-top: 50px;-->
-<!--    }-->
-
-<!--    button {-->
-<!--      background-color: #4CAF50;-->
-<!--      color: white;-->
-<!--      padding: 10px 20px;-->
-<!--      border: none;-->
-<!--      border-radius: 5px;-->
-<!--      cursor: pointer;-->
-<!--      font-size: 1rem;-->
-<!--    }-->
-
-<!--    button:hover {-->
-<!--      background-color: #45a049;-->
-<!--    }-->
-
-<!--    button:active {-->
-<!--      transform: scale(0.98);-->
-<!--    }-->
-<!--  </style>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<header>-->
-<!--  <h1>Interface Chef de Projet</h1>-->
-<!--</header>-->
-
-<!--<div class="container">-->
-<!--  <h2>Bienvenue dans l'espace Chef de Projet</h2>-->
-<!--  <p>Pour ajouter un nouveau projet, cliquez sur le bouton ci-dessous :</p>-->
-<!--  <button onclick="window.location.href='/addProject'">Ajouter un Projet</button>-->
-
-
-<!--</div>-->
-
-<!--</body>-->
-<!--</html>-->
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="fr">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--  <title>Interface Chef de Projet</title>-->
-<!--  <style>-->
-<!--    body {-->
-<!--      font-family: Arial, sans-serif;-->
-<!--      margin: 0;-->
-<!--      padding: 0;-->
-<!--      background-color: #f4f4f9;-->
-<!--    }-->
-
-<!--    header {-->
-<!--      background-color: #4CAF50;-->
-<!--      color: white;-->
-<!--      text-align: center;-->
-<!--      padding: 1em 0;-->
-<!--    }-->
-
-<!--    .container {-->
-<!--      text-align: center;-->
-<!--      margin-top: 50px;-->
-<!--    }-->
-
-<!--    table {-->
-<!--      width: 80%;-->
-<!--      margin: 20px auto;-->
-<!--      border-collapse: collapse;-->
-<!--    }-->
-
-<!--    th, td {-->
-<!--      padding: 10px;-->
-<!--      border: 1px solid #ddd;-->
-<!--      text-align: left;-->
-<!--    }-->
-
-<!--    th {-->
-<!--      background-color: #4CAF50;-->
-<!--      color: white;-->
-<!--    }-->
-
-<!--    button {-->
-<!--      background-color: #4CAF50;-->
-<!--      color: white;-->
-<!--      padding: 10px 20px;-->
-<!--      border: none;-->
-<!--      border-radius: 5px;-->
-<!--      cursor: pointer;-->
-<!--      font-size: 1rem;-->
-<!--    }-->
-
-<!--    button:hover {-->
-<!--      background-color: #45a049;-->
-<!--    }-->
-
-<!--    button:active {-->
-<!--      transform: scale(0.98);-->
-<!--    }-->
-<!--  </style>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<header>-->
-<!--  <h1>Interface Chef de Projet</h1>-->
-<!--</header>-->
-
-<!--<div class="container">-->
-<!--  <h2>Bienvenue dans l'espace Chef de Projet</h2>-->
-<!--  <p>Voici la liste des développeurs :</p>-->
-
-<!--  &lt;!&ndash; Tableau des développeurs &ndash;&gt;-->
-<!--  <table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th>ID</th>-->
-<!--      <th>Nom</th>-->
-<!--      <th>Email</th>-->
-<!--      <th>Rôle</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="developer : ${developers}">-->
-<!--      <td th:text="${developer.name}"></td>-->
-<!--      <td th:text="${developer.email}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-
-<!--  &lt;!&ndash; Bouton pour ajouter un projet &ndash;&gt;-->
-<!--  <button onclick="window.location.href='/addProject'">Ajouter un Projet</button>-->
-<!--</div>-->
-
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interface Chef de Projet</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-    }
-
-    header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 1em 0;
-    }
-
-    .container {
-      text-align: center;
-      margin: 30px auto;
-      width: 90%;
-    }
-
-    table {
-      width: 100%;
-      margin: 20px auto;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: center;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-  </style>
+  <title>Dashboard Chef de Projet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 font-sans">
 
-<header>
-  <h1>Interface Chef de Projet</h1>
-</header>
+<!-- Sidebar and Main Container -->
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside class="bg-green-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
+    <div class="py-6 text-center">
+      <h2 class="text-2xl font-bold">Dashboard</h2>
+      <p class="text-sm text-green-200">Gestion des Compétences</p>
+    </div>
+    <nav class="mt-6 flex-grow">
+      <a href="/ChefPagw" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Dashboard</a>
+      <a href="/addProject" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter un Projet</a>
+      <a href="/addCompentence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une Competence</a>
+      <a href="/projects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
+      <a href="/chefProfile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Voir mon Profile</a>
+      <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+    </nav>
+  </aside>
 
-<div class="container">
-  <h2>Bienvenue dans l'espace Chef de Projet</h2>
-  <p>Voici la liste des développeurs :</p>
+  <!-- Main Content -->
+  <main class="flex-grow p-8">
+    <!-- Header Section -->
+    <header class="flex justify-between items-center mb-8">
+      <div>
+        <h1 class="text-3xl font-semibold text-gray-800">Bienvenue, Chef de Projet</h1>
+        <p class="text-gray-600">Vue d'ensemble des développeurs et projets</p>
+      </div>
+      <div class="flex gap-4">
+        <!-- Buttons -->
+        <button onclick="window.location.href='/addProject'" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 shadow">
+          Ajouter Projet
+        </button>
+        <button onclick="window.location.href='/developers'" class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+          Modifier Liste Développeurs
+        </button>
+      </div>
+    </header>
 
-  <!-- Tableau des développeurs -->
-  <table>
-    <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Utilisation de Thymeleaf pour afficher la liste des développeurs -->
-    <tr th:each="developer : ${developers}">
-      <td th:text="${developer.name}">Nom du développeur</td>
-      <td th:text="${developer.email}">Email du développeur</td>
-    </tr>
-    </tbody>
-  </table>
+    <!-- Dashboard Overview -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Table: Liste des Développeurs -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Liste des Développeurs</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full table-auto border-collapse border border-gray-200">
+            <thead class="bg-green-700 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Nom</th>
+              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Email</th>
+              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Compétence</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+            <!-- Thymeleaf Loop for Developers -->
+            <tr th:each="developer : ${developers}" class="hover:bg-gray-100">
+              <td class="py-3 px-4 text-gray-700" th:text="${developer.name}">Nom du développeur</td>
+              <td class="py-3 px-4 text-gray-700" th:text="${developer.email}">Email du développeur</td>
+              <td class="py-3 px-4">
+                <select
+                        name="competence"
+                        th:name="'competence_' + ${developer.id}"
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 shadow-sm focus:ring-green-500 focus:border-green-500"
+                >
+                  <option value="" disabled selected>Choisissez une compétence</option>
+                  <option th:each="competence : ${competences}" th:value="${competence.id}" th:text="${competence.name}">
+                    Compétence
+                  </option>
+                </select>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-  <!-- Bouton pour ajouter un projet -->
-  <button onclick="window.location.href='/addProject'">Ajouter un Projet</button>
+      <!-- Table: Liste des Projets -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Liste des Projets</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full table-auto border-collapse border border-gray-200">
+            <thead class="bg-green-700 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Nom du Projet</th>
+              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Chef de Projet</th>
+              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Statut</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+            <!-- Thymeleaf Loop for Projects -->
+            <tr th:each="project : ${projects}" class="hover:bg-gray-100">
+              <td class="py-3 px-4 text-gray-700" th:text="${project.name}">Nom du projet</td>
+              <td class="py-3 px-4 text-gray-700" th:text="${project.manager}">Chef de projet</td>
+              <td class="py-3 px-4 text-gray-700">
+                  <span th:text="${project.status}" class="inline-block px-2 py-1 text-sm font-semibold text-white rounded-md"
+                        th:classappend="'bg-green-500' : ${project.status} == 'Terminé',
+                                    'bg-yellow-500' : ${project.status} == 'En cours',
+                                    'bg-red-500' : ${project.status} == 'En attente'">
+                    Statut
+                  </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
 
 </body>
