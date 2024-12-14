@@ -98,39 +98,11 @@
         </div>
       </div>
 
-      <!-- Table: Liste des Projets -->
-      <div class="bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Liste des Projets</h2>
-        <div class="overflow-x-auto">
-          <table class="min-w-full table-auto border-collapse border border-gray-200">
-            <thead class="bg-green-700 text-white">
-            <tr>
-              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Nom du Projet</th>
-              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Chef de Projet</th>
-              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Statut</th>
-            </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-            <!-- Thymeleaf Loop for Projects -->
-            <tr th:each="project : ${projects}" class="hover:bg-gray-100">
-              <td class="py-3 px-4 text-gray-700" th:text="${project.name}">Nom du projet</td>
-              <td class="py-3 px-4 text-gray-700" th:text="${project.manager}">Chef de projet</td>
-              <td class="py-3 px-4 text-gray-700">
-                  <span th:text="${project.status}" class="inline-block px-2 py-1 text-sm font-semibold text-white rounded-md"
-                        th:classappend="'bg-green-500' : ${project.status} == 'Terminé',
-                                    'bg-yellow-500' : ${project.status} == 'En cours',
-                                    'bg-red-500' : ${project.status} == 'En attente'">
-                    Statut
-                  </span>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+
     </section>
   </main>
 </div>
 
 </body>
 </html>
+

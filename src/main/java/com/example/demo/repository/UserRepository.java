@@ -16,4 +16,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Recherche d'utilisateurs par compétences
     @Query("SELECT DISTINCT u FROM user u JOIN u.competences c WHERE c.competenceName IN :competences")
     List<User> findUsersByCompetences(@Param("competences") List<String> competences);
+
+    /// /
+
+
+
 }

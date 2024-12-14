@@ -1,5 +1,6 @@
 package com.example.demo.controller.user;
 
+import com.example.demo.model.Competence;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -129,6 +130,10 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
     public String chefHome() {
         return "Project/ChefPagw";
     }
+
+
+
+
 
     @GetMapping("/dev/home")
     public String devHome() {
