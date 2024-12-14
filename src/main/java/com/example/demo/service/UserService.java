@@ -33,27 +33,45 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User signInUser(User user) {
-        String email = user.getEmail();
-        String password = user.getPassword();
+//    public User signInUser(User user) {
+//        String email = user.getEmail();
+//        String password = user.getPassword();
+//
+//        // Find the user by email
+//        User existingUser = userRepository.findByEmail(email);
+//
+//        if (existingUser == null) {
+//            // Handle the case when the user is not found
+//            throw new RuntimeException("User not found");
+//        }
+//
+//        // Directly compare the plain-text passwords
+//        if (!password.equals(existingUser.getPassword())) {
+//            throw new RuntimeException("Wrong password");
+//        }
+//
+//        return existingUser;
+//    }
+/// //////////////////
+public User signInUser(User user) {
+    String email = user.getEmail();
+    String password = user.getPassword();
 
-        // Find the user by email
-        User existingUser = userRepository.findByEmail(email);
+    // Find the user by email
+    User existingUser = userRepository.findByEmail(email);
 
-        if (existingUser == null) {
-            // Handle the case when the user is not found
-            throw new RuntimeException("User not found");
-        }
-
-        // Directly compare the plain-text passwords
-        if (!password.equals(existingUser.getPassword())) {
-            throw new RuntimeException("Wrong password");
-        }
-
-        return existingUser;
+    if (existingUser == null) {
+        throw new RuntimeException("User not found");
     }
 
+    // Check if the provided password matches
+    if (!password.equals(existingUser.getPassword())) {
+        throw new RuntimeException("Wrong password");
+    }
 
+    return existingUser;
+}
+/// ////////////////////////////
     //khaoulaaaaaaaaaaa
 
     public List<User> getAllDevelopers() {
@@ -93,6 +111,8 @@ public class UserService {
         // Sauvegarder l'utilisateur et les relations dans la table user_competence
         userRepository.save(user);
     }
+
+
     }
 
 

@@ -97,8 +97,7 @@ public class ProjectController {
         return "project/updatePage";
     }
 
-    /// //////////////////////////
-    ///
+
 /// /////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////////
@@ -115,6 +114,17 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
+/// /////////bujujan
+@GetMapping("/chefProfile")
+public String viewProfile(Model model, HttpSession session) {
+    User user = (User) session.getAttribute("user");
 
+    if (user == null) {
+        return "redirect:/sign-in";
+    }
+
+    model.addAttribute("user", user);
+    return "profile/profile";
+}
 }
 
