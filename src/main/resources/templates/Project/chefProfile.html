@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Chef de Projet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Main Container -->
+<div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="bg-green-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
+        <div class="py-6 text-center">
+            <h2 class="text-2xl font-bold">Dashboard</h2>
+            <p class="text-sm text-green-200">Gestion des Compétences</p>
+        </div>
+        <nav class="mt-6 flex-grow">
+            <a href="/ChefPagw" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Dashboard</a>
+            <a href="/addProject" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter un Projet</a>
+            <a href="/addCompentence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une Competence</a>
+            <a href="/projects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
+            <a href="/chefProfile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Voir mon Profile</a>
+            <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-semibold text-gray-800">Profil Chef de Projet</h1>
+                <p class="text-gray-600">Visualisez les informations personnelles et professionnelles</p>
+            </div>
+            <button onclick="window.location.href='/ChefPagw'" class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+                Retour au Dashboard
+            </button>
+        </header>
+
+        <!-- Profile Card -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <div class="flex items-center space-x-6 mb-6">
+                <img class="h-20 w-20 rounded-full object-cover" src="${user.img}" alt="Chef Avatar">
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-800">[[${user.name}]]</h2>
+                    <p class="text-gray-600">Email: [[${user.email}]]</p>
+                </div>
+            </div>
+
+            <!-- Information Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-medium text-gray-800 mb-2">Informations personnelles</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li><strong>Téléphone:</strong> +123 456 789</li>
+                        <li><strong>Adresse:</strong> 123 Rue Exemple, Ville, Pays</li>
+                        <li><strong>Poste:</strong> Chef de Projet</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-800 mb-2">Compétences</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Gestion de projet</li>
+                        <li>Leadership</li>
+                        <li>Méthodologies Agile</li>
+                        <li>Communication</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <h3 class="text-lg font-medium text-gray-800 mt-8 mb-4">Projets Associés</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                    <thead>
+                    <tr class="bg-gray-200 text-gray-800 text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Nom du Projet</th>
+                        <th class="py-3 px-6 text-left">Description</th>
+                        <th class="py-3 px-6 text-left">Statut</th>
+                        <th class="py-3 px-6 text-center">Développeurs</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm">
+                    <tr>
+                        <td class="py-3 px-6">[[${project.title}]]</td>
+                        <td class="py-3 px-6">[[${project.description}]]</td>
+                        <td class="py-3 px-6">En cours</td>
+                        <td class="py-3 px-6 text-center">3</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-6">[[${project.title}]]</td>
+                        <td class="py-3 px-6">[[${project.description}]]</td>
+                        <td class="py-3 px-6">Terminé</td>
+                        <td class="py-3 px-6 text-center">5</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

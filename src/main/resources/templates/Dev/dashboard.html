@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Développeur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Main Container -->
+<div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="bg-green-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
+        <div class="py-6 text-center">
+            <h2 class="text-2xl font-bold">Dashboard</h2>
+            <p class="text-sm text-green-200">Gestion des Projets</p>
+        </div>
+        <nav class="mt-6 flex-grow">
+            <a href="/dashboard" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mon Dashboard</a>
+            <a href="/taches" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Tâches</a>
+            <a href="/mesProject" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
+            <a href="/profile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mon Profile</a>
+            <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-8">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-semibold text-gray-800">Tableau de Bord Développeur</h1>
+                <p class="text-gray-600">Visualisez vos tâches, projets, et notifications</p>
+            </div>
+            <button onclick="window.location.href='/logout'" class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+                Déconnexion
+            </button>
+        </header>
+
+        <!-- Assignments Section -->
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+            <h2 class="text-xl font-medium text-gray-800 mb-4">Mes Assignations</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                    <thead>
+                    <tr class="bg-gray-200 text-gray-800 text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Nom de la Tâche</th>
+                        <th class="py-3 px-6 text-left">Projet</th>
+                        <th class="py-3 px-6 text-left">Deadline</th>
+                        <th class="py-3 px-6 text-center">Statut</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm">
+                    <tr>
+                        <td class="py-3 px-6">Intégration API</td>
+                        <td class="py-3 px-6">Projet X</td>
+                        <td class="py-3 px-6">20 Décembre 2024</td>
+                        <td class="py-3 px-6 text-center text-yellow-500">En cours</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-6">Développement Frontend</td>
+                        <td class="py-3 px-6">Projet Y</td>
+                        <td class="py-3 px-6">15 Janvier 2025</td>
+                        <td class="py-3 px-6 text-center text-green-500">Terminé</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+            <h2 class="text-xl font-medium text-gray-800 mb-4">Notifications</h2>
+            <ul class="space-y-4 text-gray-600">
+                <li class="flex items-center">
+                    <div class="bg-blue-100 text-blue-500 p-2 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M18 8a6 6 0 10-12 0 6 6 0 0012 0zM9 10H7V8h2v2zm4 0h-2V8h2v2zm-2 2a8 8 0 110-16 8 8 0 010 16z" />
+                        </svg>
+                    </div>
+                    <p>Une nouvelle tâche a été assignée: <strong>Correction des Bugs</strong>.</p>
+                </li>
+                <li class="flex items-center">
+                    <div class="bg-green-100 text-green-500 p-2 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-11a1 1 0 00-1-1H8a1 1 0 100 2h2v5a1 1 0 102 0V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <p>Votre tâche <strong>Intégration API</strong> est presque due.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Upcoming Tasks Section -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h2 class="text-xl font-medium text-gray-800 mb-4">Tâches à venir</h2>
+            <ul class="space-y-4 text-gray-600">
+                <li>
+                    <strong>Nom:</strong> Mise à jour de la documentation <br>
+                    <strong>Deadline:</strong> 30 Décembre 2024
+                </li>
+                <li>
+                    <strong>Nom:</strong> Développement du Dashboard <br>
+                    <strong>Deadline:</strong> 10 Janvier 2025
+                </li>
+            </ul>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

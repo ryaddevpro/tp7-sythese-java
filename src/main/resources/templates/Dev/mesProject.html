@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Main Container -->
+<div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="bg-green-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
+        <div class="py-6 text-center">
+            <h2 class="text-2xl font-bold">Dashboard</h2>
+            <p class="text-sm text-green-200">Gestion des Projets</p>
+        </div>
+        <nav class="mt-6 flex-grow">
+            <a href="/DevPage" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mon Dashboard</a>
+            <a href="/myTasks" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Tâches</a>
+            <a href="/myProjects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
+            <a href="/profile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mon Profil</a>
+            <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-8">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-semibold text-gray-800">Mes Projets</h1>
+                <p class="text-gray-600">Liste de vos projets en cours et terminés</p>
+            </div>
+        </header>
+
+        <!-- Projects Section -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h2 class="text-xl font-medium text-gray-800 mb-4">Mes Projets</h2>
+            <table class="min-w-full table-auto border-collapse border border-gray-300">
+                <thead>
+                <tr class="bg-gray-200">
+                    <th class="px-4 py-2 border border-gray-300">#</th>
+                    <th class="px-4 py-2 border border-gray-300">Nom du Projet</th>
+                    <th class="px-4 py-2 border border-gray-300">Description</th>
+                    <th class="px-4 py-2 border border-gray-300">Statut</th>
+                    <th class="px-4 py-2 border border-gray-300">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Example of a project row -->
+                <tr th:each="project, iterStat : ${projects}" class="hover:bg-gray-100">
+                    <td class="px-4 py-2 border border-gray-300" th:text="${iterStat.index + 1}"></td>
+                    <td class="px-4 py-2 border border-gray-300" th:text="${project.name}"></td>
+                    <td class="px-4 py-2 border border-gray-300" th:text="${project.description}"></td>
+                    <td class="px-4 py-2 border border-gray-300">
+                        <span th:text="${project.status}" class="px-2 py-1 text-sm rounded-md" th:classappend="${project.status == 'Completed' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'}"></span>
+                    </td>
+                    <td class="px-4 py-2 border border-gray-300">
+                        <a th:href="@{/updateProject/{id}(id=${project.id})}" class="text-blue-600 hover:underline">Modifier</a> |
+                        <a th:href="@{/deleteProject/{id}(id=${project.id})}" class="text-red-600 hover:underline">Supprimer</a>
+                    </td>
+                </tr>
+                <!-- Fallback if no projects exist -->
+                <tr th:if="${projects.size() == 0}">
+                    <td colspan="5" class="text-center py-4">Aucun projet n'a été trouvé.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add Project Button -->
+        <div class="mt-8 text-right">
+            <a href="/addProject" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800">Ajouter un Projet</a>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
