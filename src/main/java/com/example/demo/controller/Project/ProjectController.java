@@ -4,6 +4,7 @@ import com.example.demo.model.Project;
 import com.example.demo.model.User;
 import com.example.demo.service.ProjectService;
 import com.example.demo.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,21 @@ public class ProjectController {
         this.projectService = projectService;
         this.userService = userService;
     }
+
+    // Bujujan
+    @GetMapping("/chefProfile")
+    public String viewProfile(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            return "redirect:/sign-in";
+        }
+
+        model.addAttribute("user", user);
+        return "profile/profile";
+    }
+
+
     // Afficher la page pour ajouter un projet
     @GetMapping("/addProject")
     public String showAddProjectPage(Model model) {
