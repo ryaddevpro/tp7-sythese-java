@@ -32,8 +32,8 @@
     <!-- Header Section -->
     <header class="flex justify-between items-center mb-8">
       <div>
-        <h1 class="text-3xl font-semibold text-gray-800">Bienvenue, Chef de Projet</h1>
-        <p class="text-gray-600">Vue d'ensemble des développeurs et projets</p>
+        <h1 class="text-3xl font-bold text-gray-800">Bienvenue, <span class="text-green-700" th:text="${chefName}"></span> !</h1>
+        <p class="text-lg text-gray-600">Vue d'ensemble de vos projets</p>
       </div>
       <div class="flex gap-4">
         <button onclick="window.location.href='/addProject'" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 shadow">

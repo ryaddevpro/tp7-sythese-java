@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Développeur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Sidebar and Main Container -->
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="bg-blue-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
+        <div class="py-6 text-center">
+            <h2 class="text-2xl font-bold">Dashboard</h2>
+            <p class="text-sm text-blue-200">Espace Développeur</p>
+        </div>
+        <nav class="mt-6 flex-grow">
+            <a href="/dashboard" class="block py-3 px-4 text-white font-bold hover:bg-blue-800">Mon Dashboard</a>
+            <a href="/profile" class="block py-3 px-4 text-white font-bold hover:bg-blue-800">Voir mon Profil</a>
+            <a href="/my-projects" class="block py-3 px-4 text-white font-bold hover:bg-blue-800">Mes Projets</a>
+            <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-8">
+        <!-- Header Section -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-semibold text-gray-800">Bienvenue, Développeur</h1>
+                <p class="text-gray-600">Votre espace personnel</p>
+            </div>
+        </header>
+
+        <!-- Section: Profil -->
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Mon Profil</h2>
+            <div class="text-gray-700">
+                <p><span class="font-bold">Nom :</span> <span th:text="${developer.name}">John Doe</span></p>
+                <p><span class="font-bold">Email :</span> <span th:text="${developer.email}">johndoe@example.com</span></p>
+                <p><span class="font-bold">Compétences :</span>
+                    <span th:each="competence : ${developer.competences}" th:text="${competence.name}">
+            Java, React
+          </span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Section: Projets Assignés -->
+        <section class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Mes Projets</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto border-collapse border border-gray-200">
+                    <thead class="bg-blue-700 text-white">
+                    <tr>
+                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Nom du Projet</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Description</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Statut</th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                    <!-- Exemple de projets avec Thymeleaf -->
+                    <tr th:each="project : ${projects}" class="hover:bg-gray-100">
+                        <td class="py-3 px-4 text-gray-700" th:text="${project.name}">Gestion des tâches</td>
+                        <td class="py-3 px-4 text-gray-700" th:text="${project.description}">Une application de gestion de tâches.</td>
+                        <td class="py-3 px-4 text-gray-700" th:text="${project.status}">En cours</td>
+                    </tr>
+                    <!-- Exemple statique -->
+                    <tr>
+                        <td class="py-3 px-4 text-gray-700">Application Mobile</td>
+                        <td class="py-3 px-4 text-gray-700">Développement d'une app mobile pour réservation de services.</td>
+                        <td class="py-3 px-4 text-gray-700">Terminé</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

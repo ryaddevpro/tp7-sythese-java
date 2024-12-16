@@ -50,9 +50,9 @@ public class UserController {
         if ("chefProject".equalsIgnoreCase(user.getRole())) {
             return "redirect:/Project/ChefPagw";
         } else if ("developpeur".equalsIgnoreCase(user.getRole())) {
-            return "redirect:/dev/home";
+            return "redirect:/Project/dev";
         } else {
-            return "redirect:/sign-in"; // Fallback pour les rôles inconnus
+            return "redirect:/sign-in";
         }
     }
     /// ////////////////////////////////////////////
@@ -85,16 +85,14 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
         // Tentative de connexion de l'utilisateur
         User loggedInUser = userService.signInUser(user);
 
-        // Stocker l'utilisateur dans la session
         session.setAttribute("user", loggedInUser);
 
         // Redirection en fonction du rôle de l'utilisateur
         if ("chefProject".equalsIgnoreCase(loggedInUser.getRole())) {
-            return "redirect:/Project/ChefPagw"; // Redirection vers la page du Chef
+            return "redirect:/Project/ChefPagw";
         } else if ("developpeur".equalsIgnoreCase(loggedInUser.getRole())) {
-            return "redirect:/dev/home"; // Redirection vers la page du Développeur
+            return "redirect:/Project/dev";
         } else {
-            // Si le rôle est inconnu ou non défini, redirige vers la page de connexion
             return "redirect:/sign-in";
         }
 
@@ -124,35 +122,31 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
     }
 
 
-
-
     @GetMapping("/Project/ChefPagw")
-    public String chefHome() {
-        return "Project/ChefPagw";
+    public String chefHome(HttpSession session, Model model) {
+        // Récupérer l'utilisateur connecté à partir de la session
+        User loggedInUser = (User) session.getAttribute("user");
+
+        if (loggedInUser != null && "chefProject".equalsIgnoreCase(loggedInUser.getRole())) {
+            // Injecter le nom du chef de projet dans le modèle pour l'afficher sur la vue
+            model.addAttribute("chefName", loggedInUser.getName());
+            return "Project/ChefPagw";
+        } else {
+            return "redirect:/sign-in";
+        }
     }
 
 
-
-
-
-    @GetMapping("/dev/home")
+    @GetMapping("/Project/dev")
     public String devHome() {
-        return "dev/home";
+        return "Project/dev";
     }
 
 
 
 
 
-
-
-
-//    //khaoulaaaaaaaaaaaaaaaaaaa
-
-//    @GetMapping("/ChefPagw")
-//    public String showSearchPage() {
-//        return "Project/ChefPagw";
-//    }
+/// //KHAOULAAAAAAAAAAAA  ///////////
 /// ///////////////////////
 
     @PostMapping("/ChefPagw")
