@@ -114,10 +114,14 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
 
 
     @PostMapping("/register")
-    public String PostRegister(User user, @ModelAttribute("user") User myUser) {
-        System.out.println(user.toString());
-        this.userService.saveUser(user);
-        return "redirect:/sign-in";
+    public String PostRegister(@ModelAttribute("user") User user, Model model) {
+        try {
+            this.userService.saveUser(user);
+            return "redirect:/sign-in";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "user/register"; // Redirect back to the registration page.
+        }
 
     }
 
@@ -136,11 +140,6 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
         }
     }
 
-
-    @GetMapping("/Project/dev")
-    public String devHome() {
-        return "Project/dev";
-    }
 
 
 

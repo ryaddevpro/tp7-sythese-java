@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Développeur</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sign Up</title>
 </head>
-
-<body class="bg-gray-100 font-sans">
+<body>
 
 <!-- Sidebar and Main Container -->
 <div class="flex min-h-screen">
@@ -18,9 +15,8 @@
             <p class="text-sm text-blue-200">Espace Développeur</p>
         </div>
         <nav class="mt-6 flex-grow">
-            <a href="/dashboard" class="block py-3 px-4 text-white font-bold hover:bg-blue-800">Mon Dashboard</a>
+            <a href="/Project/dev" class="block py-3 px-4 text-white font-bold hover:bg-blue-800">Mon Dashboard</a>
             <a href="/profile" class="block py-3 px-4 text-white font-bold hover:bg-blue-800">Voir mon Profil</a>
-            <a href="/my-projects" class="block py-3 px-4 text-white font-bold hover:bg-blue-800">Mes Projets</a>
             <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
         </nav>
     </aside>
@@ -40,10 +36,11 @@
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Mon Profil</h2>
             <div class="text-gray-700">
                 <p><span class="font-bold">Nom :</span> <span th:text="${developer.name}">John Doe</span></p>
-                <p><span class="font-bold">Email :</span> <span th:text="${developer.email}">johndoe@example.com</span></p>
+                <p><span class="font-bold">Email :</span> <span th:text="${developer.email}">johndoe@example.com</span>
+                </p>
                 <p><span class="font-bold">Compétences :</span>
                     <span th:each="competence : ${developer.competences}" th:text="${competence.name}">
-            Java, React
+            Java, <React></React>
           </span>
                 </p>
             </div>
@@ -65,13 +62,17 @@
                     <!-- Exemple de projets avec Thymeleaf -->
                     <tr th:each="project : ${projects}" class="hover:bg-gray-100">
                         <td class="py-3 px-4 text-gray-700" th:text="${project.name}">Gestion des tâches</td>
-                        <td class="py-3 px-4 text-gray-700" th:text="${project.description}">Une application de gestion de tâches.</td>
+                        <td class="py-3 px-4 text-gray-700" th:text="${project.description}">Une application de gestion
+                            de tâches.
+                        </td>
                         <td class="py-3 px-4 text-gray-700" th:text="${project.status}">En cours</td>
                     </tr>
                     <!-- Exemple statique -->
                     <tr>
                         <td class="py-3 px-4 text-gray-700">Application Mobile</td>
-                        <td class="py-3 px-4 text-gray-700">Développement d'une app mobile pour réservation de services.</td>
+                        <td class="py-3 px-4 text-gray-700">Développement d'une app mobile pour réservation de
+                            services.
+                        </td>
                         <td class="py-3 px-4 text-gray-700">Terminé</td>
                     </tr>
                     </tbody>

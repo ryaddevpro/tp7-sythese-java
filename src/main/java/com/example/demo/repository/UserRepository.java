@@ -10,14 +10,18 @@ import java.util.Set;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
-/// /////khaoulaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/////////
+
+    boolean existsByEmail(String email);
+
+    /// /////khaoulaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/////////
     List<User> findByRole(String role);
 
     // Recherche d'utilisateurs par compétences
     @Query("SELECT DISTINCT u FROM user u JOIN u.competences c WHERE c.competenceName IN :competences")
     List<User> findUsersByCompetences(@Param("competences") List<String> competences);
 
-    /// /
+    @Query("SELECT u.competences FROM user u WHERE u.userId = :userId")
+    Set<Competence> findCompetencesByUserId(@Param("userId") Long userId);
 
 
 

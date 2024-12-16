@@ -30,7 +30,9 @@ public class Project {
 
 
     @ManyToMany
-    @JoinTable(name = "project_comptence", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "competence_id"))
+    @JoinTable(name = "project_comptence",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "competence_id"))
     private Set<Competence> competences = new HashSet<Competence>();
 
 

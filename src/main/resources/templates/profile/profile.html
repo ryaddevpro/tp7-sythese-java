@@ -9,38 +9,75 @@
 <body class="bg-gray-100">
 <div class="max-w-7xl mx-auto p-6">
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <!-- Profile Picture Section -->
         <div class="bg-blue-500 h-48 flex items-center justify-center">
-            <img class="w-32 h-32 rounded-full border-4 border-white shadow-lg" src="/images/default-profile.png" alt="Profile Picture">
+            <img class="w-32 h-32 rounded-full border-4 border-white shadow-lg" src="/images/default-profile.png"
+                 alt="Profile Picture">
         </div>
+        <!-- User Info -->
         <div class="p-6">
             <div class="text-center mb-6">
-                <h1 class="text-3xl font-bold text-gray-800">[[${user.name}]]</h1>
-                <p class="text-gray-500">[[${user.email}]]</p>
+                <h1 class="text-3xl font-bold text-gray-800" th:text="${user.name}">John Doe</h1>
+                <p class="text-gray-500" th:text="${user.email}">john.doe@example.com</p>
             </div>
-            <form action="/updateProfile" method="POST" class="space-y-6">
+            <div th:if="${errorMessage}" class="text-red-500 text-sm mt-4">
+                <p th:text="${errorMessage}"></p>
+            </div>
+
+            <!-- Form for Updating User Information -->
+            <form th:action="@{/updateProfile}" method="POST" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="name" value="[${user.name}]" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                        <input type="text" id="name" name="name" th:value="${user.name}"
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="email" value="[[${user.email}]]" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                        <input type="email" id="email" name="email" th:value="${user.email}"
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
                     </div>
                 </div>
                 <div>
                     <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
-                    <input type="text" id="role" name="role" value="[[${user.role}]]" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <input type="text" id="role" name="role" th:value="${user.role}"
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
                 </div>
+
+                <!-- Competence Multi-Select Dropdown -->
+                <div>
+                    <label for="competence" class="block text-sm font-medium text-gray-700">Competences</label>
+                    <select id="competence" name="competenceIds" multiple>
+                        <option value="">None</option> <!-- Allow no selection -->
+                        <option th:each="competence : ${competences}"
+                                th:value="${competence.comptenceId}"
+                                th:text="${competence.competenceName}"
+                                th:if="${not assignedCompetences.contains(competence)}"></option> <!-- Only show competences not assigned -->
+                    </select>
+
+                </div>
+
+                <!-- Display Assigned Competences -->
+                <div class="mt-4">
+                    <h3 class="font-medium text-gray-700">Assigned Competences:</h3>
+                    <ul>
+                        <li th:each="competence : ${assignedCompetences}" th:text="${competence.competenceName}"></li>
+                    </ul>
+                </div>
+
+                <!-- Submit and Logout Buttons -->
                 <div class="flex justify-between items-center mt-6">
-                    <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    <button type="submit"
+                            class="px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         Save Changes
                     </button>
-                    <a href="/logout" class="text-blue-500 hover:underline">Logout</a>
+                    <a th:href="@{/logout}" class="text-blue-500 hover:underline">Logout</a>
                 </div>
             </form>
         </div>
     </div>
+
+    <a href="http://localhost:8080/addCompetence">Add Competence</a>
 </div>
 </body>
 </html>
