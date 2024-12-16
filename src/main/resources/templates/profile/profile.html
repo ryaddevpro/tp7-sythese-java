@@ -51,6 +51,7 @@
                         <option value="">None</option> <!-- Allow no selection -->
                         <option th:each="competence : ${competences}"
                                 th:value="${competence.comptenceId}"
+
                                 th:text="${competence.competenceName}"
                                 th:if="${not assignedCompetences.contains(competence)}"></option> <!-- Only show competences not assigned -->
                     </select>
