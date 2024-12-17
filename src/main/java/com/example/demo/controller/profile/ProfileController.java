@@ -56,6 +56,9 @@ public class ProfileController {
     }
 
 
+
+
+
     @PostMapping("/updateProfile")
     public String updateProfile(@ModelAttribute("user") User updatedUser, @RequestParam(value = "competenceIds", defaultValue = "") List<Long> competenceIds, HttpSession session, Model model) {
         User sessionUser = (User) session.getAttribute("user");

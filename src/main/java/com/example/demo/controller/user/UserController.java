@@ -27,15 +27,7 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @GetMapping("/")
-//    public String index(Model model, HttpSession session) {
-//        User user = (User) session.getAttribute("user");
-//
-//        if (user == null) {
-//            return "redirect:/sign-in";
-//        } else return "index";
-//
-//    }
+
     /// /////////////////////////////////////////////
 
     @GetMapping("/")
@@ -64,19 +56,7 @@ public class UserController {
         return "user/sign-in";
     }
 
-//    @PostMapping("/")
-//    public String PostSignUp(@ModelAttribute("user") User user, Model model, HttpSession session) {
-//        try {
-//            User loggedIn = this.userService.signInUser(user);
-//            session.setAttribute("user", loggedIn);
-//            return "redirect:/";
-//        } catch (RuntimeException e) {
-//            System.out.println("errrrrrrrrrrrooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrr");
-//            model.addAttribute("error", "Wrong password or email");
-//            return "user/sign-in";
-//
-//        }
-//    }
+
 /// //////////////////////
 
 @PostMapping("/sign-in")
@@ -91,7 +71,7 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
         if ("chefProject".equalsIgnoreCase(loggedInUser.getRole())) {
             return "redirect:/Project/ChefPagw";
         } else if ("developpeur".equalsIgnoreCase(loggedInUser.getRole())) {
-            return "redirect:/Project/dev";
+            return "Dev/dashboard";
         } else {
             return "redirect:/sign-in";
         }

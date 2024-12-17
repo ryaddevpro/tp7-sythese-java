@@ -19,52 +19,57 @@
         <nav class="mt-6 flex-grow">
             <a href="/ChefPagw" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Dashboard</a>
             <a href="/addProject" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter un Projet</a>
-            <a href="/addCompentence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une Competence</a>
+            <a href="/addCompentence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une Compétence</a>
             <a href="/projects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
-            <a href="/chefProfile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Voir mon Profile</a>
+            <a href="/chefProfile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Voir mon Profil</a>
             <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
         </nav>
     </aside>
 
     <!-- Main Content -->
     <main class="flex-grow p-8">
+        <!-- Header -->
         <header class="flex justify-between items-center mb-8">
             <div>
                 <h1 class="text-3xl font-semibold text-gray-800">Profil Chef de Projet</h1>
                 <p class="text-gray-600">Visualisez les informations personnelles et professionnelles</p>
             </div>
-            <button onclick="window.location.href='/ChefPagw'" class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+            <button onclick="window.location.href='/ChefPagw'"
+                    class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
                 Retour au Dashboard
             </button>
         </header>
 
         <!-- Profile Card -->
         <div class="bg-white shadow rounded-lg p-6">
+            <!-- User Information -->
             <div class="flex items-center space-x-6 mb-6">
-                <img class="h-20 w-20 rounded-full object-cover" src="${user.img}" alt="Chef Avatar">
                 <div>
-                    <h2 class="text-2xl font-semibold text-gray-800">[[${user.name}]]</h2>
-                    <p class="text-gray-600">Email: [[${user.email}]]</p>
+                    <h2 class="text-2xl font-semibold text-gray-800">[[${user?.name}]]</h2>
+                    <p class="text-gray-600">Email: [[${user?.email}]]</p>
                 </div>
             </div>
 
-            <!-- Information Section -->
+            <!-- Personal Information and Competences -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Personal Information -->
                 <div>
                     <h3 class="text-lg font-medium text-gray-800 mb-2">Informations personnelles</h3>
                     <ul class="list-disc list-inside text-gray-600">
-                        <li><strong>Téléphone:</strong> +123 456 789</li>
-                        <li><strong>Adresse:</strong> 123 Rue Exemple, Ville, Pays</li>
                         <li><strong>Poste:</strong> Chef de Projet</li>
                     </ul>
                 </div>
+
+                <!-- Competences -->
                 <div>
                     <h3 class="text-lg font-medium text-gray-800 mb-2">Compétences</h3>
                     <ul class="list-disc list-inside text-gray-600">
-                        <li>Gestion de projet</li>
-                        <li>Leadership</li>
-                        <li>Méthodologies Agile</li>
-                        <li>Communication</li>
+                        <li th:if="${assignedCompetences == null or assignedCompetences.isEmpty()}">
+                            Aucune compétence attribuée.
+                        </li>
+                        <li th:each="competence : ${assignedCompetences}">
+                            [[${competence.name}]]
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -82,17 +87,14 @@
                     </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm">
-                    <tr>
-                        <td class="py-3 px-6">[[${project.title}]]</td>
-                        <td class="py-3 px-6">[[${project.description}]]</td>
-                        <td class="py-3 px-6">En cours</td>
-                        <td class="py-3 px-6 text-center">3</td>
+                    <tr th:if="${projects == null or projects.isEmpty()}">
+                        <td colspan="4" class="text-center py-3">Aucun projet disponible.</td>
                     </tr>
-                    <tr>
+                    <tr th:each="project : ${projects}">
                         <td class="py-3 px-6">[[${project.title}]]</td>
                         <td class="py-3 px-6">[[${project.description}]]</td>
-                        <td class="py-3 px-6">Terminé</td>
-                        <td class="py-3 px-6 text-center">5</td>
+                        <td class="py-3 px-6">[[${project.status}]]</td>
+                        <td class="py-3 px-6 text-center">[[${project.developerCount}]]</td>
                     </tr>
                     </tbody>
                 </table>
