@@ -51,7 +51,7 @@ public class EvaluationController {
             model.addAttribute("errorMessage", "Erreur : Développeur introuvable.");
         }
 
-        return "redirect:/ChefPagw"; // Redirection vers le tableau de bord
+        return "redirect:/Project/ChefPagw"; // Redirection vers le tableau de bord
     }
 
 

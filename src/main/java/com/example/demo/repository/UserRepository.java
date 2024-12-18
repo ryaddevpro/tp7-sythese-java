@@ -25,4 +25,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Set<Competence> findCompetencesByUserId(@Param("userId") Long userId);
 
 
+    // Fetch all users with their projects and the competences related to those projects
+    @Query("SELECT u FROM user u " +
+            "LEFT JOIN FETCH u.projects p " +
+            "LEFT JOIN FETCH p.competences c")
+    List<User> findAllUsersWithProjectsAndCompetences();
+
 }

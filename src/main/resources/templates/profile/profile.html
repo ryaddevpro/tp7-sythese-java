@@ -48,7 +48,6 @@
                 <div>
                     <label for="competence" class="block text-sm font-medium text-gray-700">Competences</label>
                     <select id="competence" name="competenceIds" multiple>
-                        <option value="">None</option> <!-- Allow no selection -->
                         <option th:each="competence : ${competences}"
                                 th:value="${competence.comptenceId}"
 

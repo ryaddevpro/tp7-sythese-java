@@ -2,6 +2,7 @@ package com.example.demo.controller.user;
 
 import com.example.demo.model.Competence;
 import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -22,9 +23,11 @@ import java.util.Set;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
 
@@ -67,11 +70,24 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
 
         session.setAttribute("user", loggedInUser);
 
+
+
+
+
+        // Fetch user with their relationships
+        User users = userRepository.findById(loggedInUser.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        System.out.println(users);
+
+        // Add user details to the model
+        model.addAttribute("developer", users);
+        model.addAttribute("projects", users.getProjects());
+
         // Redirection en fonction du rôle de l'utilisateur
         if ("chefProject".equalsIgnoreCase(loggedInUser.getRole())) {
             return "redirect:/Project/ChefPagw";
         } else if ("developpeur".equalsIgnoreCase(loggedInUser.getRole())) {
-            return "Dev/dashboard";
+            return "redirect:/Project/dev";
         } else {
             return "redirect:/sign-in";
         }

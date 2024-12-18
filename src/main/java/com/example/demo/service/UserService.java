@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Competence;
+import com.example.demo.model.Project;
 import com.example.demo.model.User;
 import com.example.demo.repository.CompetenceRepository;
+import com.example.demo.repository.ProjectRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,13 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final CompetenceRepository competenceRepository;
+    private final ProjectRepository projectRepository;
 
     // Constructor-based dependency injection
-    public UserService(UserRepository userRepository, CompetenceRepository competenceRepository) {
+    public UserService(UserRepository userRepository, CompetenceRepository competenceRepository, ProjectRepository projectRepository) {
         this.userRepository = userRepository;
         this.competenceRepository = competenceRepository;
+        this.projectRepository = projectRepository;
     }
 
     public List<User> getAllUsers() {
@@ -147,6 +151,34 @@ public class UserService {
         return developers;
     }
 
+    public void assignProjectToUser(Long userId, Long projectId, List<Long> competenceIds) {
+        // Find the user by ID
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Find the project by ID
+        Project project = projectRepository.findById(projectId).orElseThrow(() -> new RuntimeException("Project not found"));
+
+        // Fetch the competences by their IDs
+        Set<Competence> competences = new HashSet<>();
+        for (Long competenceId : competenceIds) {
+            Competence competence = competenceRepository.findById(competenceId).orElseThrow(() -> new RuntimeException("Competence not found with ID: " + competenceId));
+            competences.add(competence);
+        }
+
+        // Assign competences to the project
+        project.getCompetences().addAll(competences);
+
+        // Assign the project to the user
+        user.getProjects().add(project);
+
+        // Save the updated project and user
+        projectRepository.save(project);
+        userRepository.save(user);
+    }
+
+    public List<User> getAllUsersWithProjectsAndCompetences() {
+        return this.userRepository.findAllUsersWithProjectsAndCompetences();
+    }
 
 }
 

@@ -19,7 +19,8 @@
         <nav class="mt-6 flex-grow">
             <a href="/ChefPagw" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Dashboard</a>
             <a href="/addProject" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter un Projet</a>
-            <a href="/addCompetence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une Competence</a>
+            <a href="/addCompetence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une
+                Competence</a>
             <a href="/projects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
             <a href="/chefProfile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Voir mon Profile</a>
             <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
@@ -33,7 +34,8 @@
                 <h1 class="text-3xl font-semibold text-gray-800">Ajouter un Projet</h1>
                 <p class="text-gray-600">Remplissez les détails du nouveau projet</p>
             </div>
-            <button onclick="window.location.href='/ChefPagw'" class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+            <button onclick="window.location.href='/ChefPagw'"
+                    class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
                 Retour au Dashboard
             </button>
         </header>
@@ -45,25 +47,47 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="col-span-1 md:col-span-2">
                     <label for="title" class="block text-sm font-medium text-gray-700">Nom du Projet</label>
-                    <input type="text" id="title" name="title" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
+                    <input type="text" id="title" name="title" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
                 </div>
                 <div class="col-span-1 md:col-span-2">
                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea id="description" name="description" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"></textarea>
+                    <textarea id="description" name="description" rows="4"
+                              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"></textarea>
                 </div>
             </div>
 
+            <h2 class="text-xl font-semibold text-gray-800 mt-8 mb-4">Affectation des Competences</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="competence" class="block text-sm font-medium text-gray-700">Competences</label>
+                    <select id="competence" name="competenceIds" multiple>
+                        <option th:each="competence : ${comptences}"
+                                th:value="${competence.comptenceId}"
+
+                                th:text="${competence.competenceName}"
+                        ></option>
+                        <!-- Only show competences not assigned -->
+                    </select>
+                    <p class="text-sm text-gray-500 mt-1">Maintenez Ctrl ou Cmd pour sélectionner plusieurs
+                        développeurs.</p>
+                </div>
+            </div>
             <!-- Developer Assignment -->
             <h2 class="text-xl font-semibold text-gray-800 mt-8 mb-4">Affectation des Développeurs</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="developers" class="block text-sm font-medium text-gray-700">Développeurs</label>
-                    <select id="developers" name="developers" multiple class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
-                        <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name + ' - ' + developer.competence}">
-                            Nom du Développeur - Compétence
-                        </option>
+                    <select id="developers" name="developers" multiple
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
+                        <option th:each="developer : ${developers}"
+                                th:value="${developer.getUserId()}"
+
+                                th:text="${developer.getEmail()}"
+                        ></option>
                     </select>
-                    <p class="text-sm text-gray-500 mt-1">Maintenez Ctrl ou Cmd pour sélectionner plusieurs développeurs.</p>
+                    <p class="text-sm text-gray-500 mt-1">Maintenez Ctrl ou Cmd pour sélectionner plusieurs
+                        développeurs.</p>
                 </div>
             </div>
 

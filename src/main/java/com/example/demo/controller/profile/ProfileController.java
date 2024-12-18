@@ -62,26 +62,20 @@ public class ProfileController {
     @PostMapping("/updateProfile")
     public String updateProfile(@ModelAttribute("user") User updatedUser, @RequestParam(value = "competenceIds", defaultValue = "") List<Long> competenceIds, HttpSession session, Model model) {
         User sessionUser = (User) session.getAttribute("user");
-
         if (sessionUser == null) {
             return "redirect:/sign-in";
         }
-
         try {
             // Update user details by email
             User userFromDb = userService.updateUserByEmail(sessionUser.getEmail(), updatedUser);
-
             // Handle if no competences are selected
             if (competenceIds.isEmpty()) {
                 competenceIds = new ArrayList<>();  // Set to empty list if not provided
             }
-
             // Add selected competences to the user's competences
             userService.assignCompetenceToUser(userFromDb.getUserId(), competenceIds);
-
             // Update the session user with the latest details
             session.setAttribute("user", userFromDb);
-
             return "redirect:/profile";
         } catch (RuntimeException e) {
             model.addAttribute("errorMessage", e.getMessage());

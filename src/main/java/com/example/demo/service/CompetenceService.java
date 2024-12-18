@@ -50,4 +50,6 @@ public class CompetenceService {
     public List<Competence> getCompetencesByIds(List<Long> competenceIds) {
         return competenceRepository.findAllById(competenceIds);
     }
+
+
 }

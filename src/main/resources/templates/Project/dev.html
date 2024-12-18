@@ -35,19 +35,19 @@
         <section class="bg-white rounded-lg shadow p-6 mb-8">
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Mon Profil</h2>
             <div class="text-gray-700">
-                <p><span class="font-bold">Nom :</span> <span th:text="${developer.name}">John Doe</span></p>
-                <p><span class="font-bold">Email :</span> <span th:text="${developer.email}">johndoe@example.com</span>
+                <p><span class="font-bold">Nom :</span> <span th:text="${developer.getName()}">John Doe</span></p>
+                <p><span class="font-bold">Email :</span> <span
+                        th:text="${developer.getEmail()}">johndoe@example.com</span>
                 </p>
                 <p><span class="font-bold">Compétences :</span>
-                    <span th:each="competence : ${developer.competences}" th:text="${competence.name}">
-            Java, <React></React>
-          </span>
+                    <span th:each="competence : ${developer.getCompetences()}"
+                          th:text="${competence.getCompetenceName()}+' '"></span>
                 </p>
             </div>
         </section>
 
         <!-- Section: Projets Assignés -->
-        <section class="bg-white rounded-lg shadow p-6">
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Mes Projets</h2>
             <div class="overflow-x-auto">
                 <table class="min-w-full table-auto border-collapse border border-gray-200">
@@ -55,25 +55,39 @@
                     <tr>
                         <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Nom du Projet</th>
                         <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Description</th>
-                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Statut</th>
                     </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                    <!-- Exemple de projets avec Thymeleaf -->
                     <tr th:each="project : ${projects}" class="hover:bg-gray-100">
-                        <td class="py-3 px-4 text-gray-700" th:text="${project.name}">Gestion des tâches</td>
-                        <td class="py-3 px-4 text-gray-700" th:text="${project.description}">Une application de gestion
-                            de tâches.
+                        <td class="py-3 px-4 text-gray-700" th:text="${project.getTitle()}">Gestion des tâches</td>
+                        <td class="py-3 px-4 text-gray-700" th:text="${project.getDescription()}">Une application de
+                            gestion de tâches.
                         </td>
-                        <td class="py-3 px-4 text-gray-700" th:text="${project.status}">En cours</td>
                     </tr>
-                    <!-- Exemple statique -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: Evaluations -->
+        <section class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Mes Evaluations</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto border-collapse border border-gray-200">
+                    <thead class="bg-blue-700 text-white">
                     <tr>
-                        <td class="py-3 px-4 text-gray-700">Application Mobile</td>
-                        <td class="py-3 px-4 text-gray-700">Développement d'une app mobile pour réservation de
-                            services.
-                        </td>
-                        <td class="py-3 px-4 text-gray-700">Terminé</td>
+                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Evaluateur</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Note</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Commentaire</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                    <tr th:each="evaluation : ${evaluations}" class="hover:bg-gray-100">
+                        <td class="py-3 px-4 text-gray-700" th:text="${evaluation.getEvaluator().getName()}"></td>
+                        <td class="py-3 px-4 text-gray-700" th:text="${evaluation.getRating()}"></td>
+                        <td class="py-3 px-4 text-gray-700" th:text="${evaluation.getCommentaire()}"></td>
+                        <td class="py-3 px-4 text-gray-700" th:text="${evaluation.getEvaluationDate()}"></td>
                     </tr>
                     </tbody>
                 </table>
