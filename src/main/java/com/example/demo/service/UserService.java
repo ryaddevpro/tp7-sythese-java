@@ -46,26 +46,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    //    public User signInUser(User user) {
-//        String email = user.getEmail();
-//        String password = user.getPassword();
-//
-//        // Find the user by email
-//        User existingUser = userRepository.findByEmail(email);
-//
-//        if (existingUser == null) {
-//            // Handle the case when the user is not found
-//            throw new RuntimeException("User not found");
-//        }
-//
-//        // Directly compare the plain-text passwords
-//        if (!password.equals(existingUser.getPassword())) {
-//            throw new RuntimeException("Wrong password");
-//        }
-//
-//        return existingUser;
-//    }
-/// //////////////////
+
     public User signInUser(User user) {
         String email = user.getEmail();
         String password = user.getPassword();
@@ -84,12 +65,8 @@ public class UserService {
 
         return existingUser;
     }
-/// ////////////////////////////
     //khaoulaaaaaaaaaaa
 
-    public List<User> getAllDevelopers() {
-        return userRepository.findByRole("developer");
-    }
 
 
     // Recherche d'utilisateurs par compétences
@@ -162,6 +139,13 @@ public class UserService {
         return userRepository.findCompetencesByUserId(userId);
     }
 
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+    public List<User> getAllDevelopers() {
+        List<User> developers = userRepository.findByRole("developpeur");
+        return developers;
+    }
 
 
 }

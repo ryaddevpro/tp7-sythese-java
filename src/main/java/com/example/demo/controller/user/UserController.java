@@ -111,6 +111,11 @@ public String postSignIn(@ModelAttribute("user") User user, Model model, HttpSes
         // Récupérer l'utilisateur connecté à partir de la session
         User loggedInUser = (User) session.getAttribute("user");
 
+        List<User> developers = userService.getAllDevelopers();
+        model.addAttribute("developers", developers);
+
+        System.out.println(developers);
+
         if (loggedInUser != null && "chefProject".equalsIgnoreCase(loggedInUser.getRole())) {
             // Injecter le nom du chef de projet dans le modèle pour l'afficher sur la vue
             model.addAttribute("chefName", loggedInUser.getName());
@@ -158,6 +163,10 @@ public String logout(HttpSession session) {
     // Rediriger vers la page de connexion
     return "redirect:/sign-in";
 }
+
+
+
+
 
 }
 

@@ -25,7 +25,7 @@ public class devController {
         // Add user details to the model
         model.addAttribute("developer", user);
         model.addAttribute("projects", user.getProjects());
-        return "Project/dev";
+        return "Projec/dev";
     }
 
 }

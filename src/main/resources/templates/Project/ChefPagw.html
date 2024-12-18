@@ -65,39 +65,50 @@
     </section>
 
     <!-- Dashboard Overview -->
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Table: Liste des Développeurs -->
-      <div class="bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Liste des Développeurs</h2>
-        <div class="overflow-x-auto">
-          <table class="min-w-full table-auto border-collapse border border-gray-200">
-            <thead class="bg-green-700 text-white">
-            <tr>
-              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Nom</th>
-              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Email</th>
-              <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Compétence</th>
-            </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-            <!-- Thymeleaf Loop for Developers -->
-            <tr th:each="developer : ${developers}" class="hover:bg-gray-100">
-              <td class="py-3 px-4 text-gray-700" th:text="${developer.name}">Nom du développeur</td>
-              <td class="py-3 px-4 text-gray-700" th:text="${developer.email}">Email du développeur</td>
-              <td class="py-3 px-4">
-                <select name="competence" th:name="'competence_' + ${developer.id}"
-                        class="block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 shadow-sm focus:ring-green-500 focus:border-green-500">
-                  <option value="" disabled selected>Choisissez une compétence</option>
-                  <option th:each="competence : ${competences}" th:value="${competence.id}" th:text="${competence.name}">
-                    Compétence
-                  </option>
-                </select>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
 
+      <!-- Section: Évaluer un Développeur -->
+      <section class="bg-white rounded-lg shadow p-6 mt-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Évaluer un Développeur</h2>
+        <form action="/evaluations/add" method="post" class="space-y-4">
+          <!-- Sélection du développeur -->
+          <div>
+            <label for="developer" class="block text-gray-700 font-medium">Développeur :</label>
+            <select id="developer" name="developerId" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+              <option value="" disabled selected>Choisissez un développeur</option>
+              <th:block th:if="${not #lists.isEmpty(developers)}">
+                <option th:each="developer : ${developers}"
+                        th:value="${developer.userId}"
+                        th:text="${developer.name}">
+                </option>
+              </th:block>
+              <th:block th:if="${#lists.isEmpty(developers)}">
+                <option disabled>Aucun développeur disponible</option>
+              </th:block>
+            </select>
+
+
+          </div>
+
+          <!-- Note -->
+          <div>
+            <label for="note" class="block text-gray-700 font-medium">Note (sur 10) :</label>
+            <input type="number" id="note" name="note" min="0" max="10" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ex: 8">
+          </div>
+
+          <!-- Commentaire -->
+          <div>
+            <label for="comment" class="block text-gray-700 font-medium">Commentaire :</label>
+            <textarea id="comment" name="comment" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ajoutez un commentaire ici..."></textarea>
+          </div>
+
+          <!-- Bouton Soumettre -->
+          <div>
+            <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 shadow">
+              Soumettre l'Évaluation
+            </button>
+          </div>
+        </form>
+      </section>
 
     </section>
   </main>
