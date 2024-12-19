@@ -3,59 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Profil</title>
+    <title>Profile Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 font-sans">
+<body class="bg-gray-900 text-gray-100">
 
-<!-- Main Container -->
-<div class="min-h-screen flex flex-col items-center p-6">
-    <!-- Header -->
-    <header class="mb-8 w-full max-w-4xl">
-        <div class="text-center">
-            <h1 class="text-4xl font-bold">Mon Profil</h1>
-            <p class="text-gray-400">Gérez les détails de votre profil</p>
-        </div>
-    </header>
+<div class="max-w-7xl mx-auto p-6">
+    <div class="bg-gray-800 shadow-md rounded-lg overflow-hidden">
+        <!-- User Info -->
+        <div class="p-6">
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-200" th:text="${user.name}">John Doe</h1>
+                <p class="text-gray-400" th:text="${user.email}">john.doe@example.com</p>
+            </div>
+            <div th:if="${errorMessage}" class="text-red-500 text-sm mt-4">
+                <p th:text="${errorMessage}"></p>
+            </div>
 
-    <!-- Profile Section -->
-    <div class="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-4xl">
-        <h2 class="text-2xl font-semibold mb-4">Informations Personnelles</h2>
-        <div class="space-y-4 text-gray-300">
-            <div>
-                <label class="block text-gray-400 font-medium">Nom:</label>
-                <p th:text="${user.name}"></p>
-            </div>
-            <div>
-                <label class="block text-gray-400 font-medium">Email:</label>
-                <p th:text="${user.email}"></p>
-            </div>
-            <div>
-                <label class="block text-gray-400 font-medium">Rôle:</label>
-                <p th:text="${user.role}"></p>
-            </div>
+            <!-- Form for Updating User Information -->
+            <form th:action="@{/updateProfile}" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+                        <input type="text" id="name" name="name" th:value="${user.name}"
+                               class="mt-1 block w-full h-12 rounded-md border-2 border-gray-600 bg-gray-800 text-gray-100 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" th:value="${user.email}"
+                               class="mt-1 block w-full h-12 rounded-md border-2 border-gray-600 bg-gray-800 text-gray-100 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    </div>
+                </div>
+                <div>
+                    <label for="role" class="block text-sm font-medium text-gray-300">Role</label>
+                    <input type="text" id="role" name="role" th:value="${user.role}"
+                           class="mt-1 block w-full h-12 rounded-md border-2 border-gray-600 bg-gray-800 text-gray-100 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                </div>
+
+                <!-- Competence Multi-Select Dropdown -->
+                <div>
+                    <label for="competence" class="block text-sm font-medium text-gray-300">Competences</label>
+                    <select id="competence" name="competenceIds" multiple
+                            class="block w-full h-12 bg-gray-800 text-gray-100 rounded-md border-2 border-gray-600 focus:ring-blue-500 focus:ring-opacity-50">
+                        <option th:each="competence : ${competences}"
+                                th:value="${competence.comptenceId}"
+                                th:text="${competence.competenceName}"
+                                th:if="${not assignedCompetences.contains(competence)}"></option> <!-- Only show competences not assigned -->
+                    </select>
+                </div>
+
+                <!-- Display Assigned Competences -->
+                <div class="mt-4">
+                    <h3 class="font-medium text-gray-300">Assigned Competences:</h3>
+                    <ul>
+                        <li th:each="competence : ${assignedCompetences}" th:text="${competence.competenceName}"></li>
+                    </ul>
+                </div>
+
+                <!-- Submit and Logout Buttons -->
+                <div class="flex justify-between items-center mt-6">
+                    <button type="submit"
+                            class="px-6 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Save Changes
+                    </button>
+                    <a th:href="@{/logout}" class="text-blue-400 hover:underline">Logout</a>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Update Profile Section -->
-    <div class="bg-gray-800 rounded-lg shadow-lg p-6 mt-8 w-full max-w-4xl">
-        <h2 class="text-2xl font-semibold mb-4">Mise à jour du Profil</h2>
-        <form th:action="@{/updateProfile}" th:object="${user}" method="post">
-            <div class="mb-4">
-                <label class="block text-gray-400 font-medium mb-2">Nom</label>
-                <input type="text" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400" th:field="*{name}" placeholder="Nom">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-400 font-medium mb-2">Email</label>
-                <input type="email" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400" th:field="*{email}" placeholder="Email">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-400 font-medium mb-2">Rôle</label>
-                <input type="text" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400" th:field="*{role}" placeholder="Rôle">
-            </div>
-            <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">Mettre à jour</button>
-        </form>
-    </div>
+    <a href="http://localhost:8080/addCompetence" class="text-blue-400 hover:underline">Add Competence</a>
 </div>
 
 </body>

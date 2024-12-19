@@ -18,11 +18,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
     // Recherche d'utilisateurs par compétences
-    @Query("SELECT DISTINCT u FROM user u JOIN u.competences c WHERE c.competenceName IN :competences")
-    List<User> findUsersByCompetences(@Param("competences") List<String> competences);
 
     @Query("SELECT u.competences FROM user u WHERE u.userId = :userId")
     Set<Competence> findCompetencesByUserId(@Param("userId") Long userId);
+
+    @Query("SELECT DISTINCT u FROM user u JOIN u.competences c WHERE c.competenceName IN :competences")
+    List<User> findUsersByCompetences(@Param("competences") List<String> competences);
 
 
     // Fetch all users with their projects and the competences related to those projects
@@ -30,5 +31,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "LEFT JOIN FETCH u.projects p " +
             "LEFT JOIN FETCH p.competences c")
     List<User> findAllUsersWithProjectsAndCompetences();
+
+    @Query("SELECT u FROM user u JOIN u.projects p WHERE p.projectId = :projectId")
+    List<User> findUsersByProjectId(@Param("projectId") Long projectId);
 
 }
