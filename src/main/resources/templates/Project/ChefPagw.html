@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,113 +6,107 @@
   <title>Dashboard Chef de Projet</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 font-sans">
 
 <!-- Sidebar and Main Container -->
 <div class="flex min-h-screen">
   <!-- Sidebar -->
-  <aside class="bg-green-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
-    <div class="py-6 text-center">
-      <h2 class="text-2xl font-bold">Dashboard</h2>
-      <p class="text-sm text-green-200">Gestion des Compétences</p>
+  <aside class="bg-gray-800 shadow-lg w-72 flex flex-col">
+    <div class="py-8 text-center border-b border-gray-700">
+      <h2 class="text-3xl font-bold text-white">Dashboard</h2>
+      <p class="text-sm text-gray-400 mt-2">Gestion des Compétences</p>
     </div>
-    <nav class="mt-6 flex-grow">
-      <a href="/ChefPagw" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Dashboard</a>
-      <a href="/addProject" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter un Projet</a>
-      <a href="/addCompetence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une Competence</a>
-      <a href="/projects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
-      <a href="/chefProfile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Voir mon Profile</a>
-      <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+    <nav class="mt-10 flex-grow space-y-4">
+      <a href="/ChefPagw" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Dashboard</a>
+      <a href="/addProject" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Ajouter un Projet</a>
+      <a href="/addCompetence" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Ajouter une Compétence</a>
+      <a href="/projects" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Mes Projets</a>
+      <a href="/chefProfile" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Voir mon Profile</a>
+      <a href="/logout" class="block py-3 px-6 font-medium hover:bg-red-700 text-red-400 rounded-lg transition">Déconnexion</a>
     </nav>
   </aside>
 
   <!-- Main Content -->
-  <main class="flex-grow p-8">
+  <main class="flex-grow p-10">
     <!-- Header Section -->
-    <header class="flex justify-between items-center mb-8">
+    <header class="flex justify-between items-center mb-12">
       <div>
-        <h1 class="text-3xl font-bold text-gray-800">Bienvenue, <span class="text-green-700" th:text="${chefName}"></span> !</h1>
-        <p class="text-lg text-gray-600">Vue d'ensemble de vos projets</p>
+        <h1 class="text-5xl font-extrabold">Bienvenue, <span class="text-indigo-400" th:text="${chefName}"></span> !</h1>
+        <p class="text-lg text-gray-400 mt-2">Vue d'ensemble de vos projets</p>
       </div>
       <div class="flex gap-4">
-        <button onclick="window.location.href='/addProject'" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 shadow">
+        <button onclick="window.location.href='/addProject'" class="bg-indigo-600 text-white px-6 py-3 rounded-full hover:bg-indigo-700 shadow-lg transition">
           Ajouter Projet
         </button>
-        <button onclick="window.location.href='/developers'" class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+        <button onclick="window.location.href='/developers'" class="bg-gray-700 text-white px-6 py-3 rounded-full hover:bg-gray-600 shadow-lg transition">
           Modifier Liste Développeurs
         </button>
       </div>
     </header>
 
     <!-- Recherche de développeurs par compétences -->
-    <section class="bg-white rounded-lg shadow p-6 mb-8">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4">Recherche de Développeurs par Compétences</h2>
-      <form action="/ChefPagw" method="post" class="mb-6">
-        <label for="competences" class="block text-gray-700">Compétences (séparées par des virgules) :</label>
-        <input type="text" id="competences" name="competences" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ex: Java, Spring, React">
-        <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Rechercher</button>
+    <section class="bg-gray-800 rounded-xl shadow-lg p-8 mb-12">
+      <h2 class="text-2xl font-bold mb-6">Recherche de Développeurs par Compétences</h2>
+      <form action="/ChefPagw" method="post" class="space-y-6">
+        <div>
+          <label for="competences" class="block text-gray-300 mb-2">Compétences (séparées par des virgules) :</label>
+          <input type="text" id="competences" name="competences" class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-full focus:ring focus:ring-indigo-500 placeholder-gray-400" placeholder="Ex: Java, Spring, React">
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-full hover:bg-indigo-700 transition">Rechercher</button>
       </form>
 
       <!-- Résultats de la recherche -->
-      <h3 class="text-lg font-semibold text-gray-800">Résultats :</h3>
-      <ul>
-        <li th:each="user : ${users}" th:text="${user.name} + ' (' + user.email + ')'">
-          Nom et Email de l'utilisateur
-        </li>
+      <h3 class="text-lg font-semibold mt-8">Résultats :</h3>
+      <ul class="mt-4 space-y-2">
+        <li th:each="user : ${users}" th:text="${user.name} + ' (' + user.email + ')'" class="bg-gray-700 p-3 rounded-lg">Nom et Email de l'utilisateur</li>
       </ul>
-      <p th:if="${users == null || users.isEmpty()}" class="text-red-500">Aucun utilisateur trouvé pour les compétences spécifiées.</p>
+      <p th:if="${users == null || users.isEmpty()}" class="text-red-400 mt-4">Aucun utilisateur trouvé pour les compétences spécifiées.</p>
     </section>
 
-    <!-- Dashboard Overview -->
+    <!-- Section: Évaluer un Développeur -->
+    <section class="bg-gray-800 rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold mb-6">Évaluer un Développeur</h2>
+      <form action="/evaluations/add" method="post" class="space-y-6">
+        <!-- Sélection du développeur -->
+        <div>
+          <label for="developer" class="block text-gray-300 mb-2">Développeur :</label>
+          <select id="developer" name="developerId" class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-full focus:ring focus:ring-indigo-500">
+            <option value="" disabled selected>Choisissez un développeur</option>
+            <th:block th:if="${not #lists.isEmpty(developers)}">
+              <option th:each="developer : ${developers}"
+                      th:value="${developer.userId}"
+                      th:text="${developer.name}">
+              </option>
+            </th:block>
+            <th:block th:if="${#lists.isEmpty(developers)}">
+              <option disabled>Aucun développeur disponible</option>
+            </th:block>
+          </select>
+        </div>
 
-      <!-- Section: Évaluer un Développeur -->
-      <section class="bg-white rounded-lg shadow p-6 mt-8">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Évaluer un Développeur</h2>
-        <form action="/evaluations/add" method="post" class="space-y-4">
-          <!-- Sélection du développeur -->
-          <div>
-            <label for="developer" class="block text-gray-700 font-medium">Développeur :</label>
-            <select id="developer" name="developerId" class="w-full px-3 py-2 border border-gray-300 rounded-md">
-              <option value="" disabled selected>Choisissez un développeur</option>
-              <th:block th:if="${not #lists.isEmpty(developers)}">
-                <option th:each="developer : ${developers}"
-                        th:value="${developer.userId}"
-                        th:text="${developer.name}">
-                </option>
-              </th:block>
-              <th:block th:if="${#lists.isEmpty(developers)}">
-                <option disabled>Aucun développeur disponible</option>
-              </th:block>
-            </select>
+        <!-- Note -->
+        <div>
+          <label for="note" class="block text-gray-300 mb-2">Note (sur 10) :</label>
+          <input type="number" id="note" name="note" min="0" max="10" class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-full focus:ring focus:ring-indigo-500" placeholder="Ex: 8">
+        </div>
 
+        <!-- Commentaire -->
+        <div>
+          <label for="comment" class="block text-gray-300 mb-2">Commentaire :</label>
+          <textarea id="comment" name="comment" rows="4" class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-xl focus:ring focus:ring-indigo-500 placeholder-gray-400" placeholder="Ajoutez un commentaire ici..."></textarea>
+        </div>
 
-          </div>
-
-          <!-- Note -->
-          <div>
-            <label for="note" class="block text-gray-700 font-medium">Note (sur 10) :</label>
-            <input type="number" id="note" name="note" min="0" max="10" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ex: 8">
-          </div>
-
-          <!-- Commentaire -->
-          <div>
-            <label for="comment" class="block text-gray-700 font-medium">Commentaire :</label>
-            <textarea id="comment" name="comment" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Ajoutez un commentaire ici..."></textarea>
-          </div>
-
-          <!-- Bouton Soumettre -->
-          <div>
-            <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 shadow">
-              Soumettre l'Évaluation
-            </button>
-          </div>
-        </form>
-      </section>
-
+        <!-- Bouton Soumettre -->
+        <div>
+          <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-full hover:bg-indigo-700 shadow-lg transition">
+            Soumettre l'Évaluation
+          </button>
+        </div>
+      </form>
     </section>
+
   </main>
 </div>
 
 </body>
 </html>
-

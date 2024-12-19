@@ -6,70 +6,71 @@
     <title>Mon Profil</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 font-sans">
 
 <!-- Main Container -->
 <div class="min-h-screen flex">
     <!-- Sidebar -->
-    <aside class="bg-green-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
-        <div class="py-6 text-center">
+    <aside class="bg-gray-800 text-gray-300 shadow-lg w-64 flex flex-col">
+        <div class="py-6 text-center border-b border-gray-700">
             <h2 class="text-2xl font-bold">Dashboard</h2>
-            <p class="text-sm text-green-200">Gestion des Projets</p>
+            <p class="text-sm text-gray-400">Gestion des Projets</p>
         </div>
-        <nav class="mt-6 flex-grow">
-            <a href="/DevPage" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mon Dashboard</a>
-            <a href="/myTasks" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Tâches</a>
-            <a href="/myProjects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
-            <a href="/profile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mon Profil</a>
-            <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+        <nav class="mt-6 flex-grow space-y-2">
+            <a href="/DevPage" class="block py-3 px-4 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Mon Dashboard</a>
+            <a href="/myTasks" class="block py-3 px-4 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Mes Tâches</a>
+            <a href="/myProjects" class="block py-3 px-4 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Mes Projets</a>
+            <a href="/profile" class="block py-3 px-4 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Mon Profil</a>
+            <a href="/logout" class="block py-3 px-4 font-medium hover:bg-red-700 text-red-400 rounded-lg transition">Déconnexion</a>
         </nav>
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-grow p-8">
+    <main class="flex-grow p-10">
         <!-- Header -->
         <header class="flex justify-between items-center mb-8">
             <div>
-                <h1 class="text-3xl font-semibold text-gray-800">Mon Profil</h1>
-                <p class="text-gray-600">Gérez les détails de votre profil</p>
+                <h1 class="text-4xl font-bold">Mon Profil</h1>
+                <p class="text-gray-400">Gérez les détails de votre profil</p>
             </div>
         </header>
 
         <!-- Profile Section -->
-        <div class="bg-white shadow rounded-lg p-6">
-            <h2 class="text-xl font-medium text-gray-800 mb-4">Informations Personnelles</h2>
-            <div class="space-y-4">
+        <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4">Informations Personnelles</h2>
+            <div class="space-y-4 text-gray-300">
                 <div>
-                    <label class="block text-gray-600 font-medium">Nom:</label>
-                    <p class="text-gray-800" th:text="${user.name}"></p>
+                    <label class="block text-gray-400 font-medium">Nom:</label>
+                    <p th:text="${user.name}"></p>
                 </div>
                 <div>
-                    <label class="block text-gray-600 font-medium">Email:</label>
-                    <p class="text-gray-800" th:text="${user.email}"></p>
+                    <label class="block text-gray-400 font-medium">Email:</label>
+                    <p th:text="${user.email}"></p>
                 </div>
                 <div>
-                    <label class="block text-gray-600 font-medium">Rôle:</label>
-                    <p class="text-gray-800" th:text="${user.role}"></p>
+                    <label class="block text-gray-400 font-medium">Rôle:</label>
+                    <p th:text="${user.role}"></p>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white shadow rounded-lg p-6 mt-8">
-            <h2 class="text-xl font-medium text-gray-800 mb-4">Mise à jour du Profil</h2>
+        <!-- Update Profile Section -->
+        <div class="bg-gray-800 rounded-lg shadow-lg p-6 mt-8">
+            <h2 class="text-2xl font-semibold mb-4">Mise à jour du Profil</h2>
             <form th:action="@{/updateProfile}" th:object="${user}" method="post">
                 <div class="mb-4">
-                    <label class="block text-gray-600 font-medium mb-2">Nom</label>
-                    <input type="text" class="w-full px-4 py-2 border rounded-lg" th:field="*{name}" placeholder="Nom">
+                    <label class="block text-gray-400 font-medium mb-2">Nom</label>
+                    <input type="text" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400" th:field="*{name}" placeholder="Nom">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-600 font-medium mb-2">Email</label>
-                    <input type="email" class="w-full px-4 py-2 border rounded-lg" th:field="*{email}" placeholder="Email">
+                    <label class="block text-gray-400 font-medium mb-2">Email</label>
+                    <input type="email" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400" th:field="*{email}" placeholder="Email">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-600 font-medium mb-2">Rôle</label>
-                    <input type="text" class="w-full px-4 py-2 border rounded-lg" th:field="*{role}" placeholder="Rôle">
+                    <label class="block text-gray-400 font-medium mb-2">Rôle</label>
+                    <input type="text" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400" th:field="*{role}" placeholder="Rôle">
                 </div>
-                <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800">Mettre à jour</button>
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">Mettre à jour</button>
             </form>
         </div>
     </main>

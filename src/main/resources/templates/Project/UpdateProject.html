@@ -4,30 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier le projet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1>Modifier le projet</h1>
+<body class="bg-gray-900 text-gray-200 font-sans min-h-screen flex items-center justify-center">
 
-<!-- Affichage des messages flash (succès ou erreur) -->
-<div th:if="${message}">
-    <p th:text="${message}" th:class="${messageType}"></p>
+<!-- Main Container -->
+<div class="w-full max-w-lg bg-gray-800 shadow-lg rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-white mb-6 text-center">Modifier le projet</h1>
+
+    <!-- Flash Messages -->
+    <div th:if="${message}" class="mb-4">
+        <p th:text="${message}" th:classappend="'px-4 py-3 rounded-md text-sm ' + (${messageType} == 'success' ? 'bg-green-600 text-green-100' : 'bg-red-600 text-red-100')"></p>
+    </div>
+
+    <!-- Form -->
+    <form action="#" th:action="@{/updateProject/{id}(id=${project.id})}" method="post">
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-300 mb-2">Titre du projet :</label>
+            <input type="text" id="title" name="title" th:value="${project.title}" required placeholder="Entrez le titre du projet" class="w-full px-4 py-2 border border-gray-700 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-200 placeholder-gray-400">
+        </div>
+
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-300 mb-2">Description :</label>
+            <textarea id="description" name="description" th:value="${project.description}" required placeholder="Entrez la description du projet" class="w-full px-4 py-2 border border-gray-700 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-200 placeholder-gray-400"></textarea>
+        </div>
+
+        <div class="flex justify-between items-center">
+            <a href="/projects" class="text-sm text-blue-400 hover:underline">Retour à la liste des projets</a>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">Mettre à jour le projet</button>
+        </div>
+    </form>
 </div>
 
-<!-- Formulaire de modification du projet -->
-<form action="#" th:action="@{/updateProject/{id}(id=${project.id})}" method="post">
-    <div class="form-group">
-        <label for="title">Titre du projet :</label>
-        <input type="text" id="title" name="title" th:value="${project.title}" required placeholder="Entrez le titre du projet">
-    </div>
-
-    <div class="form-group">
-        <label for="description">Description :</label>
-        <textarea id="description" name="description" th:value="${project.description}" required placeholder="Entrez la description du projet"></textarea>
-    </div>
-
-    <button type="submit">Mettre à jour le projet</button>
-</form>
-
-<a href="/projects" class="btn">Retour à la liste des projets</a>
 </body>
 </html>

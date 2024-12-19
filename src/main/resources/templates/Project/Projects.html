@@ -1,118 +1,52 @@
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liste des projets</title>
-  <style>
-    /* Style général du corps */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    /* Titre */
-    h1 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 30px;
-    }
-
-    /* Style du tableau */
-    table {
-      width: 80%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-      text-transform: uppercase;
-    }
-
-    td {
-      font-size: 16px;
-      color: #555;
-    }
-
-    /* Style des actions (boutons) */
-    td a {
-      text-decoration: none;
-      background-color: #f44336;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 4px;
-      margin-right: 10px;
-      transition: background-color 0.3s ease;
-    }
-
-    td a:hover {
-      background-color: #d32f2f;
-    }
-
-    td a.update {
-      background-color: #4CAF50;
-    }
-
-    td a.update:hover {
-      background-color: #388E3C;
-    }
-
-    /* Style pour la confirmation avant suppression */
-    a {
-      cursor: pointer;
-    }
-
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 font-sans">
 
-<h1>Liste des projets</h1>
+<!-- Main Container -->
+<div class="flex min-h-screen flex-col items-center justify-center">
+  <h1 class="text-4xl font-extrabold text-gray-100 mb-8">Liste des projets</h1>
 
-<!-- Affichage de la liste des projets -->
-<table>
-  <thead>
-  <tr>
-    <th>Titre</th>
-    <th>Description</th>
-    <th>Actions</th> <!-- Colonne pour les actions (modifier, supprimer) -->
-  </tr>
-  </thead>
-  <tbody>
-  <!-- Afficher chaque projet -->
-  <tr th:each="project : ${projects}">
-    <td th:text="${project.title}"></td>
-    <td th:text="${project.description}"></td>
-    <td>
-      <!-- Lien pour supprimer le projet -->
-      <a th:href="@{'/deleteProject/' + ${project.projectId}}"
-         onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?');">Supprimer</a>
+  <!-- Table Container -->
+  <div class="w-11/12 lg:w-3/4 overflow-x-auto">
+    <table class="w-full text-left table-auto border-collapse border border-gray-700">
+      <thead class="bg-gray-700">
+      <tr>
+        <th class="py-3 px-4 border-b border-gray-600 text-gray-300">Titre</th>
+        <th class="py-3 px-4 border-b border-gray-600 text-gray-300">Description</th>
+        <th class="py-3 px-4 border-b border-gray-600 text-gray-300">Actions</th>
+      </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-600">
+      <tr th:each="project : ${projects}" class="hover:bg-gray-700 transition">
+        <td class="py-3 px-4 text-gray-300" th:text="${project.title}"></td>
+        <td class="py-3 px-4 text-gray-300" th:text="${project.description}"></td>
+        <td class="py-3 px-4">
+          <a th:href="@{'/deleteProject/' + ${project.projectId}}"
+             class="text-red-400 bg-red-700 hover:bg-red-800 py-2 px-4 rounded transition inline-block"
+             onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?');">
+            Supprimer
+          </a>
+          <a th:href="@{'/updateProject/' + ${project.projectId}}"
+             class="text-gray-100 bg-green-600 hover:bg-green-700 py-2 px-4 rounded transition inline-block ml-2">
+            Mettre à jour
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <!-- Lien pour mettre à jour le projet -->
-      <a th:href="@{'/updateProject/' + ${project.projectId}}" class="update">Mettre à jour</a>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<button onclick="window.location.href='/ChefPagw'" class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
-  Retour au Dashboard
-</button>
+  <button onclick="window.location.href='/ChefPagw'"
+          class="mt-6 bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+    Retour au Dashboard
+  </button>
+</div>
+
 </body>
 </html>

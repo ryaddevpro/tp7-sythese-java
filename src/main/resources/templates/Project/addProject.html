@@ -6,94 +6,87 @@
     <title>Ajouter un Projet</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 font-sans">
 
 <!-- Main Container -->
 <div class="min-h-screen flex">
     <!-- Sidebar -->
-    <aside class="bg-green-700 text-white shadow-[10px_0_8px_-4px_rgba(0,0,0,0.2)] w-64 flex flex-col">
-        <div class="py-6 text-center">
-            <h2 class="text-2xl font-bold">Dashboard</h2>
-            <p class="text-sm text-green-200">Gestion des Compétences</p>
+    <aside class="bg-gray-800 shadow-lg w-72 flex flex-col">
+        <div class="py-8 text-center border-b border-gray-700">
+            <h2 class="text-3xl font-bold text-white">Dashboard</h2>
+            <p class="text-sm text-gray-400 mt-2">Gestion des Compétences</p>
         </div>
-        <nav class="mt-6 flex-grow">
-            <a href="/ChefPagw" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Dashboard</a>
-            <a href="/addProject" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter un Projet</a>
-            <a href="/addCompetence" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Ajouter une
-                Competence</a>
-            <a href="/projects" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Mes Projets</a>
-            <a href="/chefProfile" class="block py-3 px-4 text-white font-bold hover:bg-green-800">Voir mon Profile</a>
-            <a href="/logout" class="block py-3 px-4 text-white font-bold hover:bg-red-600">Déconnexion</a>
+        <nav class="mt-10 flex-grow space-y-4">
+            <a href="/ChefPagw" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Dashboard</a>
+            <a href="/addProject" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Ajouter un Projet</a>
+            <a href="/addCompetence" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Ajouter une Compétence</a>
+            <a href="/projects" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Mes Projets</a>
+            <a href="/chefProfile" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Voir mon Profile</a>
+            <a href="/logout" class="block py-3 px-6 font-medium hover:bg-red-700 text-red-400 rounded-lg transition">Déconnexion</a>
         </nav>
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-grow p-8">
-        <header class="flex justify-between items-center mb-8">
+    <main class="flex-grow p-10">
+        <header class="flex justify-between items-center mb-12">
             <div>
-                <h1 class="text-3xl font-semibold text-gray-800">Ajouter un Projet</h1>
-                <p class="text-gray-600">Remplissez les détails du nouveau projet</p>
+                <h1 class="text-5xl font-extrabold">Ajouter un Projet</h1>
+                <p class="text-lg text-gray-400 mt-2">Remplissez les détails du nouveau projet</p>
             </div>
             <button onclick="window.location.href='/ChefPagw'"
-                    class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 shadow">
+                    class="bg-gray-700 text-white px-6 py-3 rounded-full hover:bg-gray-600 shadow-lg transition">
                 Retour au Dashboard
             </button>
         </header>
 
         <!-- Add Project Form -->
-        <form action="/addProject" method="POST" class="bg-white shadow rounded-lg p-6">
+        <form action="/addProject" method="POST" class="bg-gray-800 shadow-lg rounded-xl p-8">
             <!-- Project Details -->
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Détails du Projet</h2>
+            <h2 class="text-2xl font-bold mb-6">Détails du Projet</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="col-span-1 md:col-span-2">
-                    <label for="title" class="block text-sm font-medium text-gray-700">Nom du Projet</label>
+                    <label for="title" class="block text-gray-300 mb-2">Nom du Projet</label>
                     <input type="text" id="title" name="title" required
-                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
+                           class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500 placeholder-gray-400">
                 </div>
                 <div class="col-span-1 md:col-span-2">
-                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <label for="description" class="block text-gray-300 mb-2">Description</label>
                     <textarea id="description" name="description" rows="4"
-                              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"></textarea>
+                              class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500 placeholder-gray-400"></textarea>
                 </div>
             </div>
 
-            <h2 class="text-xl font-semibold text-gray-800 mt-8 mb-4">Affectation des Competences</h2>
+            <h2 class="text-2xl font-bold mt-10 mb-6">Affectation des Compétences</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="competence" class="block text-sm font-medium text-gray-700">Competences</label>
-                    <select id="competence" name="competenceIds" multiple>
+                    <label for="competence" class="block text-gray-300 mb-2">Compétences</label>
+                    <select id="competence" name="competenceIds" multiple
+                            class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500">
                         <option th:each="competence : ${comptences}"
                                 th:value="${competence.comptenceId}"
-
-                                th:text="${competence.competenceName}"
-                        ></option>
-                        <!-- Only show competences not assigned -->
+                                th:text="${competence.competenceName}"></option>
                     </select>
-                    <p class="text-sm text-gray-500 mt-1">Maintenez Ctrl ou Cmd pour sélectionner plusieurs
-                        développeurs.</p>
+                    <p class="text-sm text-gray-400 mt-2">Maintenez Ctrl ou Cmd pour sélectionner plusieurs compétences.</p>
                 </div>
             </div>
-            <!-- Developer Assignment -->
-            <h2 class="text-xl font-semibold text-gray-800 mt-8 mb-4">Affectation des Développeurs</h2>
+
+            <h2 class="text-2xl font-bold mt-10 mb-6">Affectation des Développeurs</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="developers" class="block text-sm font-medium text-gray-700">Développeurs</label>
+                    <label for="developers" class="block text-gray-300 mb-2">Développeurs</label>
                     <select id="developers" name="developers" multiple
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
+                            class="w-full px-5 py-3 bg-gray-700 text-gray-300 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500">
                         <option th:each="developer : ${developers}"
                                 th:value="${developer.getUserId()}"
-
-                                th:text="${developer.getEmail()}"
-                        ></option>
+                                th:text="${developer.getEmail()}"></option>
                     </select>
-                    <p class="text-sm text-gray-500 mt-1">Maintenez Ctrl ou Cmd pour sélectionner plusieurs
-                        développeurs.</p>
+                    <p class="text-sm text-gray-400 mt-2">Maintenez Ctrl ou Cmd pour sélectionner plusieurs développeurs.</p>
                 </div>
             </div>
 
             <!-- Submit Button -->
-            <div class="mt-8 flex justify-end">
-                <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 shadow">
+            <div class="mt-10 flex justify-end">
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-full hover:bg-indigo-700 shadow-lg transition">
                     Ajouter le Projet
                 </button>
             </div>

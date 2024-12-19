@@ -1,110 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des compétences</title>
-    <style>
-        /* Style général de la page */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-            color: #333;
-        }
-
-        /* Style du tableau */
-        table {
-            width: 80%;
-            margin: 30px auto;
-            border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-
-        th, td {
-            padding: 12px 20px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Style des liens */
-        a {
-            text-decoration: none;
-            color: #4CAF50;
-            margin-right: 15px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Style pour le bouton de confirmation */
-        .update {
-            color: #2196F3;
-        }
-
-        /* Style du message de confirmation */
-        a:active {
-            color: #d32f2f;
-        }
-
-        /* Style responsive */
-        @media (max-width: 768px) {
-            table {
-                width: 90%;
-            }
-
-            th, td {
-                font-size: 14px;
-            }
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 font-sans">
 
-<h1>Liste des compétences</h1>
+<!-- Main Container -->
+<div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="bg-gray-800 shadow-lg w-72 flex flex-col">
+        <div class="py-8 text-center border-b border-gray-700">
+            <h2 class="text-3xl font-bold text-white">Dashboard</h2>
+            <p class="text-sm text-gray-400 mt-2">Gestion des Compétences</p>
+        </div>
+        <nav class="mt-10 flex-grow space-y-4">
+            <a href="/ChefPagw" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Dashboard</a>
+            <a href="/addProject" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Ajouter un Projet</a>
+            <a href="/addCompetence" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Ajouter une Compétence</a>
+            <a href="/projects" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Mes Projets</a>
+            <a href="/chefProfile" class="block py-3 px-6 font-medium hover:bg-gray-700 hover:text-indigo-400 rounded-lg transition">Voir mon Profile</a>
+            <a href="/logout" class="block py-3 px-6 font-medium hover:bg-red-700 text-red-400 rounded-lg transition">Déconnexion</a>
+        </nav>
+    </aside>
 
-<!-- Affichage des compétences -->
-<table>
-    <thead>
-    <tr>
-        <th>Nom de la compétence</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Affichage des compétences à partir de la variable 'competences' -->
-    <tr th:each="competence : ${competences}">
-        <td th:text="${competence.competenceName}"></td>
-        <td>
-            <a th:href="@{'/deleteCompetence/' + ${competence.comptenceId}}"
-               onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?');">Supprimer</a>
-            <a th:href="@{'/updateCompetence/' + ${competence.comptenceId}}" class="update">Mettre à jour</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <!-- Main Content -->
+    <main class="flex-grow p-10">
+        <header class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-5xl font-extrabold">Liste des Compétences</h1>
+                <p class="text-lg text-gray-400 mt-2">Gérez vos compétences enregistrées ci-dessous.</p>
+            </div>
+        </header>
+
+        <!-- Competence Table -->
+        <div class="bg-gray-800 shadow-lg rounded-xl p-8">
+            <table class="w-full text-left table-auto">
+                <thead>
+                <tr>
+                    <th class="px-6 py-4 border-b border-gray-700 text-gray-300">Nom de la compétence</th>
+                    <th class="px-6 py-4 border-b border-gray-700 text-gray-300">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Replace this example with dynamic content -->
+                <tr class="hover:bg-gray-700 transition">
+                    <td class="px-6 py-4 border-b border-gray-700">Exemple de Compétence</td>
+                    <td class="px-6 py-4 border-b border-gray-700">
+                        <a href="#" class="text-red-400 hover:underline" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?');">Supprimer</a>
+                        <a href="#" class="text-indigo-400 hover:underline ml-4">Mettre à jour</a>
+                    </td>
+                </tr>
+                <!-- Dynamic rows should be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
 
 </body>
 </html>
