@@ -4,68 +4,67 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Sign Up</title>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100">
+
 <div class="relative flex flex-col rounded-xl bg-transparent items-center h-screen justify-center">
-    <h4 class="block text-xl font-medium text-slate-800">
+    <h4 class="block text-xl font-medium text-gray-200">
         Register
     </h4>
-    <p class="text-slate-500 font-light">
+    <p class="text-gray-400 font-light">
         Nice to meet you! Enter your details to register.
     </p>
     <form th:action="@{/register}" th:object="${user}" method="post" class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
 
         <!-- Error Message Display -->
-        <div th:if="${errorMessage}" class="mb-4 p-3 text-sm text-red-700 bg-red-100 border border-red-300 rounded">
-            <p th:text="${errorMessage}"></p>
-        </div>
+
 
         <div class="mb-1 flex flex-col gap-6">
             <!-- Name Field -->
             <div class="w-full max-w-sm min-w-[200px]">
-                <label class="block mb-2 text-sm text-slate-600">
+                <label class="block mb-2 text-sm text-gray-300">
                     Your Name
                 </label>
                 <input type="text"
-                       class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                       class="w-full bg-transparent placeholder:text-gray-500 text-gray-100 text-sm border border-gray-700 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-400 shadow-sm focus:shadow-md"
                        placeholder="Your Name"
                        th:field="*{name}"/>
             </div>
 
             <!-- Email Field -->
             <div class="w-full max-w-sm min-w-[200px]">
-                <label class="block mb-2 text-sm text-slate-600">
+                <label class="block mb-2 text-sm text-gray-300">
                     Email
                 </label>
                 <input type="email"
-                       class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                       class="w-full bg-transparent placeholder:text-gray-500 text-gray-100 text-sm border border-gray-700 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-400 shadow-sm focus:shadow-md"
                        placeholder="Your Email"
                        th:field="*{email}"/>
             </div>
 
             <!-- Password Field -->
             <div class="w-full max-w-sm min-w-[200px]">
-                <label class="block mb-2 text-sm text-slate-600">
+                <label class="block mb-2 text-sm text-gray-300">
                     Password
                 </label>
                 <input type="password"
-                       class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                       class="w-full bg-transparent placeholder:text-gray-500 text-gray-100 text-sm border border-gray-700 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-400 shadow-sm focus:shadow-md"
                        placeholder="Your Password"
                        th:field="*{password}"/>
             </div>
 
             <!-- Role Dropdown -->
             <div class="w-full max-w-sm min-w-[200px]">
-                <label class="block mb-2 text-sm text-slate-600">
+                <label class="block mb-2 text-sm text-gray-300">
                     Role
                 </label>
                 <div class="relative">
                     <select th:field="*{role}"
-                            class="w-full bg-transparent capitalize placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
+                            class="w-full bg-transparent capitalize placeholder:text-gray-500 text-gray-100 text-sm border border-gray-700 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
                         <option value="developpeur" class="capitalize">Developpeur</option>
                         <option value="chefProject" class="capitalize">Chef de Projet</option>
                     </select>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2"
-                         stroke="currentColor" class="h-5 w-5 ml-1 absolute top-2.5 right-2.5 text-slate-700">
+                         stroke="currentColor" class="h-5 w-5 ml-1 absolute top-2.5 right-2.5 text-gray-100">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"/>
                     </svg>
@@ -75,17 +74,18 @@
 
         <!-- Submit Button -->
         <input type="submit"
-               class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+               class="mt-4 w-full rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-500 focus:shadow-none active:bg-blue-500 hover:bg-blue-500 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                value="Register"/>
 
         <!-- Sign-in Link -->
-        <p class="flex justify-center mt-6 text-sm text-slate-600">
+        <p class="flex justify-center mt-6 text-sm text-gray-400">
             Already have an account?
-            <a href="http://localhost:8080/sign-in" class="ml-1 text-sm font-semibold text-slate-700 underline">
+            <a href="http://localhost:8080/sign-in" class="ml-1 text-sm font-semibold text-blue-500 underline">
                 Sign in
             </a>
         </p>
     </form>
 </div>
+
 </body>
 </html>
