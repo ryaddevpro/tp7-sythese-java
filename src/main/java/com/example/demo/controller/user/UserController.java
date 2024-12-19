@@ -148,6 +148,7 @@ public class UserController {
 
         System.out.println(developers);
 
+
         // Vérification si l'entrée utilisateur est valide
         if (competencesInput != null && !competencesInput.trim().isEmpty()) {
             // Diviser les compétences entrées par l'utilisateur
